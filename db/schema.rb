@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_144743) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_191506) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "returns", force: :cascade do |t|
+    t.string "command_number"
+    t.string "client_name"
+    t.string "status"
+    t.string "state"
+    t.string "comment"
+    t.string "additional_cost"
+    t.string "exception"
+    t.boolean "restock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "warehouse_operator_id"
+    t.integer "client_service_officer_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +37,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_144743) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
