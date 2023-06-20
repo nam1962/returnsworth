@@ -10,9 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_144743) do
+
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_190738) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "client_name"
+    t.integer "order_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "return_items", force: :cascade do |t|
+    t.bigint "return_id"
+    t.bigint "order_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_item_id"], name: "index_return_items_on_order_item_id"
+    t.index ["return_id"], name: "index_return_items_on_return_id"
+  end
+
+  create_table "returns", force: :cascade do |t|
+    t.string "command_number"
+    t.string "client_name"
+    t.string "status"
+    t.string "state"
+    t.string "comment"
+    t.string "additional_cost"
+    t.string "exception"
+    t.boolean "restock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "warehouse_operator_id"
+    t.integer "client_service_officer_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +61,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_144743) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "return_items", "order_items"
+  add_foreign_key "return_items", "returns"
 end
