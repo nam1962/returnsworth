@@ -1,0 +1,12 @@
+<h1>Create a new return</h1>
+
+<%= form_with(model: @return, local: true) do |form| %>
+  <div>
+    <%= form.label :order_id, "Order ID" %>
+    <%= form.select :order_id, Order.all.pluck(:id, :order_number), prompt: "Select an Order" %>
+  </div>
+
+  <%= form.submit "Create Return" %>
+<% end %>
+
+<%= link_to 'Back', returns_path %>
