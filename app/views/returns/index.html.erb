@@ -1,0 +1,39 @@
+<h1>Returns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order Number</th>
+      <th>Status</th>
+      <th>State</th>
+      <th>Comment</th>
+      <th>Additional Cost</th>
+      <th>Exception</th>
+      <th>Restock</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @returns.each do |return_item| %>
+      <tr>
+        <td><%= return_item.order.order_number %></td>
+        <td><%= return_item.status %></td>
+        <td><%= return_item.state %></td>
+        <td><%= return_item.comment %></td>
+        <td><%= return_item.additional_cost %></td>
+        <td><%= return_item.exception %></td>
+        <td><%= return_item.restock ? "Yes" : "No" %></td>
+        <td>
+          <%= link_to 'Show', return_item %>
+          <% if current_user.warehouse_operator? %>
+            <%= link_to 'Edit', edit_return_path(return_item) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if current_user.client_service_officer? %>
+  <%= link_to 'New Return', new_return_path %>
+<% end %>
