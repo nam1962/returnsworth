@@ -56,11 +56,19 @@
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">Houla! Ca ne fonctionne pas.</h1>
+            <img src="/images/internal_server_error.gif" alt="Error animation" class="error-animation">
+            <p class="card-text">Nous sommes confus de cette panne indépendante de notre volonté.</p>
+            <a href="/" class="btn btn-primary">Go back to homepage</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>
