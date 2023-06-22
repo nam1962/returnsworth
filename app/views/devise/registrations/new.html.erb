@@ -8,6 +8,19 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "first_name" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "last_name" }%>
+    <%= f.input :role,
+                required: true,
+                autofocus: true,
+                collection: [["Warehouse operator", "warehouse_operator"], ["Client service officer", "client_service_officer"]],
+                input_html: { autocomplete: "role" }%>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
