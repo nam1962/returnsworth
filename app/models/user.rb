@@ -12,4 +12,11 @@ class User < ApplicationRecord
   validates :last_name, presence: true
 
   has_many :returns
+
+  def warehouse_operator?
+    role == 'warehouse_operator'
+  end
+  def client_service_officer?
+    role == 'client_service_officer'
+  end
 end
