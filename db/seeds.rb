@@ -91,4 +91,5 @@ return_item2 = ReturnItem.create!(
   return_id: return2.id,
   order_item_id: order_item2.id
 )
+
 puts "seed ended"

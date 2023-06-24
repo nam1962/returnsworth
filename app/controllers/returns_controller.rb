@@ -18,7 +18,7 @@ class ReturnsController < ApplicationController
     @return.client_service_officer_id = current_user.id
 
     if @return.save
-      redirect_to @return, notice: 'Return was successfully created.'
+      redirect_to return_path(@return), notice: 'Return was successfully created.'
     else
       render :new
     end
