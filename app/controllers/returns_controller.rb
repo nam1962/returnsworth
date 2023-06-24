@@ -6,7 +6,7 @@ class ReturnsController < ApplicationController
 
 
   def index
-    @returns = Return.includes(:order).all
+    @returns = Return.includes(return_items: { order_item: :order }).all
   end
 
   def new
@@ -32,6 +32,11 @@ class ReturnsController < ApplicationController
       render :edit
     end
   end
+
+  def show
+    @return = Return.find(params[:id])
+  end
+
 
   private
 
