@@ -21,3 +21,4 @@ class User < ApplicationRecord
     role == 'client_service_officer'
   end
 end
+
