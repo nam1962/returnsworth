@@ -55,6 +55,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 
 # Added by Eleanor devs
 gem "meta-tags"
+gem 'rqrcode'
 
 
 group :development, :test do
