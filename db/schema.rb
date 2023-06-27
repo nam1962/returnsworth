@@ -10,31 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_190738) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_184245) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "order_items", force: :cascade do |t|
-    t.bigint "order_id"
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.bigint "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["order_id"], name: "index_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
+    t.string "order_number"
     t.string "client_name"
-    t.integer "order_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "return_items", force: :cascade do |t|
-    t.bigint "return_id"
-    t.bigint "order_item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["order_item_id"], name: "index_return_items_on_order_item_id"
-    t.index ["return_id"], name: "index_return_items_on_return_id"
   end
 
   create_table "returns", force: :cascade do |t|
@@ -50,6 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_190738) do
     t.datetime "updated_at", null: false
     t.integer "warehouse_operator_id"
     t.integer "client_service_officer_id"
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_returns_on_order_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,7 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_190738) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "return_items", "order_items"
-  add_foreign_key "return_items", "returns"
+  add_foreign_key "items", "orders"
+  add_foreign_key "returns", "orders"
 end
