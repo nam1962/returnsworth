@@ -1,14 +1,25 @@
 // Specific CSS for your home-page
-.homepage {
-  background-color: rgba(250, 240, 202, 1);
-  margin: 0
+.background_video {
+  background-size: cover;
+  position:relative;
 }
 
-.image_tag {
-  max-width: 100%
+.title {
+  position:absolute;
+  top:25px;
+  font-weight: bolder;
+  color: rgba(255, 109, 28, 1);
 }
 
-// .button-start {
-//   color: rgba(0, 29, 74, 1)!important;
-//   background-color: rgba(137, 223, 84, 1)!important
-// }
+.slogan {
+  position:absolute;
+  font-weight: normal;
+  color: rgba(0, 29, 74, 1);
+}
+
+.button {
+  max-width: 50%;
+  margin-block-end: 1rem;
+  margin-top: 1rem;
+  border-radius: 2rem;
+}
