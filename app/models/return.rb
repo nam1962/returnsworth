@@ -1,16 +1,21 @@
 class Return < ApplicationRecord
   belongs_to :warehouse_operator, foreign_key: :warehouse_operator_id, class_name: "User", optional: true
   belongs_to :client_service_officer, foreign_key: :client_service_officer_id, class_name: "User"
+  belongs_to :order
+  has_many :items, through: :order
+  accepts_nested_attributes_for :items # todo coucou ???
 
-  has_many :return_items
-  accepts_nested_attributes_for :return_items, allow_destroy: true
-  after_create_commit :create_qr_code
+  after_create :create_qr_code
+
+  def first_order
+    order.first
+  end
 
   private
 
 
   def create_qr_code
-    qrcode = RQRCode::QRCode.new("Return-#{id}")
+    qrcode = RQRCode::QRCode.new("Return-#{self.id}")
     png = qrcode.as_png(size: 300)
     save_qr_code_locally(png)
   end

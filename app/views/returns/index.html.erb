@@ -16,7 +16,7 @@
   <tbody>
     <% @returns.each do |return_record| %>
       <tr>
-        <td><%= return_record.return_items.first.present? ? return_record.return_items.first.order_item.order.order_number : 'N/A' %></td>
+        <td><%= return_record.items.first.present? ? return_record.order.order_number : 'N/A' %></td>
         <td><%= return_record.status %></td>
         <td><%= return_record.state %></td>
         <td><%= return_record.comment %></td>
@@ -37,4 +37,3 @@
 <% if current_user.client_service_officer? %>
   <%= link_to 'New Return', new_return_path %>
 <% end %>
-

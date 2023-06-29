@@ -6,7 +6,7 @@ class ReturnsController < ApplicationController
 
 
   def index
-    @returns = Return.includes(return_items: { order_item: :order }).all
+    @returns = Return.all
   end
 
   def new
@@ -27,7 +27,6 @@ class ReturnsController < ApplicationController
 
   def edit
     @return = Return.find(params[:id])
-    @return.return_items.build unless @return.return_items.any?
   end
 
   def update
