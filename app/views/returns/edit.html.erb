@@ -1,42 +1,40 @@
-<h1>Edit return</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto my-5">
+      <h1>Edit return</h1>
 
-<%= form_with(model: @return, local: true) do |form| %>
-  <div>
-    <%= form.label :order_id, "Order ID" %>
-    <%= form.select :order_id, Order.all.pluck(:id, :order_number), prompt: "Select an Order", disabled: (current_user.warehouse_operator? && action_name == 'edit') %>
+      <%= simple_form_for(@return, local: true) do |f| %>
+        <div class="d-block">
+          <div class="button-wrapper">
+            <%= link_to 'OK', returns_path %>
+            <button id="problem-button">Problème</button>
+          </div>
+        </div>
+
+        <div class="d-none" id="hidden-section-1">
+          <%= f.input :comment, as: :text, input_html: { rows: 4 } %>
+          <button>validé</button>
+          <%= f.input :additional_cost, as: :boolean %>
+          <%= f.input :restock, as: :boolean %>
+
+          <%= f.input :additional_cost, as: :radio_buttons, collection: [[true, 'Oui'], [false, 'Non']] %>
+          <%= f.input :restock, as: :boolean %>
+          <%= f.submit "Update Return" %>
+        </div>
+
+        <%# TODO Ajouter un formulaire nesté par return_item pour pouvoir editer au cas par cas %>
+
+      <% end %>
+
+      <%= link_to 'Back', returns_path %>
+    </div>
   </div>
+</div>
 
-  <div>
-    <%= form.label :status, "Status" %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div>
-    <%= form.label :state, "State" %>
-    <%= form.text_field :state %>
-  </div>
-
-  <div>
-    <%= form.label :comment, "Comment" %>
-    <%= form.text_area :comment %>
-  </div>
-
-  <div>
-    <%= form.label :additional_cost, "Additional Cost" %>
-    <%= form.number_field :additional_cost %>
-  </div>
-
-  <div>
-    <%= form.label :exception, "Exception" %>
-    <%= form.text_field :exception %>
-  </div>
-
-  <div>
-    <%= form.label :restock, "Restock" %>
-    <%= form.check_box :restock %>
-  </div>
-
-  <%= form.submit "Update Return" %>
-<% end %>
-
-<%= link_to 'Back', returns_path %>
+<script>
+ document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('problem-button').addEventListener('click', function() {
+    document.getElementById('hidden-section-1').classList.remove('d-none');
+  });
+});
+</script>
