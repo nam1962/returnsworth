@@ -71,4 +71,5 @@ Rails.application.configure do
 
   # for tests
   # config.consider_all_requests_local = false
+  config.hosts.clear
 end

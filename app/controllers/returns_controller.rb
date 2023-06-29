@@ -18,10 +18,14 @@ class ReturnsController < ApplicationController
     @return.client_service_officer_id = current_user.id
 
     if @return.save
-      redirect_to @return, notice: 'Return was successfully created.'
+      redirect_to return_path(@return), notice: 'Return was successfully created.'
     else
       render :new
     end
+  end
+
+  def edit
+    @return = Return.find(params[:id])
   end
 
   def update
@@ -41,8 +45,9 @@ class ReturnsController < ApplicationController
   private
 
   def return_params
-    params.require(:return).permit(:order_id, :warehouse_operator_id, :client_service_officer_id, return_items_attributes: [:order_item_id])
+    params.require(:return).permit(:order_id, :warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :additional_cost, :exception, :restock, return_items_attributes: [:order_item_id])
   end
+
 
   def check_client_service_officer
     unless current_user.client_service_officer?
@@ -58,3 +63,4 @@ class ReturnsController < ApplicationController
     end
   end
 end
+

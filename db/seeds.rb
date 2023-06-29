@@ -5,90 +5,85 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+# db/seeds.rb
+
 puts "cleaning database"
 ReturnItem.destroy_all
 OrderItem.destroy_all
 Return.destroy_all
 Order.destroy_all
 User.destroy_all
-# db/seeds.rb
+
 puts "starting seed"
-# User :
-user1 = User.create!(
-  email: 'amaury@lewagon.com',
-  password: '123456',
-  role: "warehouse_operator",
-  first_name: 'Amaury',
-  last_name: 'Amaury'
-)
 
-user2 = User.create!(
-  email: 'celine@lewagon.com',
-  password: '123456',
+# Create Amaury and Celine:
+amaury = User.create!(
+  email: "amaury@lewagon.com",
+  password: "123456",
   role: "client_service_officer",
-  first_name: 'Céline',
-  last_name: 'Savary'
+  first_name: "Amaury",
+  last_name: "CSO"
 )
 
-# Order :
-order1 = Order.create!(
-  order_number: 1001,
-  client_name: 'Noréa'
+celine = User.create!(
+  email: "celine@lewagon.com",
+  password: "123456",
+  role: "warehouse_operator",
+  first_name: "Celine",
+  last_name: "WH"
 )
 
-order2 = Order.create!(
-  order_number: 1002,
-  client_name: 'Noréabis'
-)
+# Users:
+officers = [amaury] + 3.times.map do |i|
+  User.create!(
+    email: "officer#{i + 2}@lewagon.com",
+    password: "123456",
+    role: "client_service_officer",
+    first_name: "Officer",
+    last_name: "CSO#{i + 2}"
+  )
+end
 
-# OrderItem :
-order_item1 = OrderItem.create!(
-  order_id: order1.id
-)
+operators = [celine] + 5.times.map do |i|
+  User.create!(
+    email: "operator#{i + 2}@lewagon.com",
+    password: "123456",
+    role: "warehouse_operator",
+    first_name: "Operator",
+    last_name: "WH#{i + 2}"
+  )
+end
 
-order_item2 = OrderItem.create!(
-  order_id: order2.id
-)
+# Orders:
+(1..9).each do |i|
+  Order.create!(order_number: 1000 + i, client_name: "Client #{i}")
+end
 
-order_item3 = OrderItem.create!(
-  order_id: order2.id
-)
+# OrderItems:
+Order.all.each do |order|
+  OrderItem.create!(order_id: order.id)
+end
 
-# Return :
-return1 = Return.create!(
-  command_number: '12345',
-  client_name: order1.client_name,
-  status: 'pending',
-  state: 'processed',
-  comment: 'OK',
-  additional_cost: '20',
-  exception: 'none',
-  restock: true,
-  warehouse_operator_id: user1.id,
-  client_service_officer_id: user2.id
-)
+# Returns:
+20.times do |i|
+  Return.create!(
+    command_number: "10000#{i + 1}",
+    client_name: "Client #{i % 9 + 1}", # Ensure client_name matches an existing order
+    status: ['pending', 'completed'].sample, # Random status
+    state: ['processed', 'unprocessed'].sample, # Random state
+    comment: 'OK',
+    additional_cost: rand(10..50), # Random additional cost
+    exception: 'none',
+    restock: [true, false].sample, # Random restock
+    warehouse_operator_id: operators.sample.id,
+    client_service_officer_id: officers.sample.id
+  )
+end
 
-return2 = Return.create!(
-  command_number: '54321',
-  client_name: order2.client_name,
-  status: 'pending',
-  state: 'processed',
-  comment: 'OK',
-  additional_cost: '20',
-  exception: 'none',
-  restock: true,
-  warehouse_operator_id: nil,
-  client_service_officer_id: user2.id
-)
+# ReturnItems:
+Return.all.each do |return_item|
+  ReturnItem.create!(return_id: return_item.id, order_item_id: OrderItem.all.sample.id)
+end
 
-# ReturnItem :
-return_item1 = ReturnItem.create!(
-  return_id: return1.id,
-  order_item_id: order_item1.id
-)
+puts "seed finished"
 
-return_item2 = ReturnItem.create!(
-  return_id: return2.id,
-  order_item_id: order_item2.id
-)
-puts "seed ended"
