@@ -3,7 +3,7 @@
     <div class="col-6 mx-auto my-5">
       <h1>Edit return</h1>
 
-      <%= simple_form_for(@return, local: true) do |f| %>
+      <%= simple_form_for(@return, local: true), data:{controller: "edit"} do |f| %>
         <div class="d-block">
           <div class="button-wrapper">
             <%= link_to 'OK', returns_path %>
