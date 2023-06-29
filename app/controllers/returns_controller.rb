@@ -6,7 +6,7 @@ class ReturnsController < ApplicationController
 
 
   def index
-    @returns = Return.includes(return_items: { order_item: :order }).all
+    @returns = Return.all
   end
 
   def new
@@ -63,4 +63,3 @@ class ReturnsController < ApplicationController
     end
   end
 end
-
