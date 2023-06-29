@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_184245) do
     t.integer "additional_cost"
     t.string "exception"
     t.boolean "restock"
+    t.bigint "return_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "warehouse_operator_id"

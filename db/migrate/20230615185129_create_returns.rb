@@ -9,6 +9,7 @@ class CreateReturns < ActiveRecord::Migration[7.0]
       t.string :additional_cost
       t.string :exception
       t.boolean :restock
+      t.bigint :return_id # to create the return_id column
 
       t.timestamps
     end

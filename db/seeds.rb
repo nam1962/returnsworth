@@ -8,11 +8,10 @@
 # db/seeds.rb
 
 puts "cleaning database"
-ReturnItem.destroy_all
-OrderItem.destroy_all
 Return.destroy_all
 Order.destroy_all
 User.destroy_all
+Item.destroy_all
 
 puts "starting seed"
 
@@ -20,21 +19,21 @@ puts "starting seed"
 amaury = User.create!(
   email: "amaury@lewagon.com",
   password: "123456",
-  role: "client_service_officer",
+  role: "warehouse_operator",
   first_name: "Amaury",
-  last_name: "CSO"
+  last_name: "WH"
 )
 
 celine = User.create!(
   email: "celine@lewagon.com",
   password: "123456",
-  role: "warehouse_operator",
+  role: "client_service_officer",
   first_name: "Celine",
-  last_name: "WH"
+  last_name: "CSO"
 )
 
 # Users:
-officers = [amaury] + 3.times.map do |i|
+officers = [celine] + 3.times.map do |i|
   User.create!(
     email: "officer#{i + 2}@lewagon.com",
     password: "123456",
@@ -44,7 +43,7 @@ officers = [amaury] + 3.times.map do |i|
   )
 end
 
-operators = [celine] + 5.times.map do |i|
+operators = [amaury] + 5.times.map do |i|
   User.create!(
     email: "operator#{i + 2}@lewagon.com",
     password: "123456",
@@ -55,20 +54,23 @@ operators = [celine] + 5.times.map do |i|
 end
 
 # Orders:
-(1..9).each do |i|
+orders = (1..40).map do |i|
   Order.create!(order_number: 1000 + i, client_name: "Client #{i}")
 end
 
-# OrderItems:
-Order.all.each do |order|
-  OrderItem.create!(order_id: order.id)
+# Items:
+item_names = ["item1", "item2", "item3", "item4"]
+orders.each do |order|
+  rand(1..4).times do
+    Item.create!(name: item_names.sample, order: order)
+  end
 end
 
 # Returns:
 20.times do |i|
   Return.create!(
     command_number: "10000#{i + 1}",
-    client_name: "Client #{i % 9 + 1}", # Ensure client_name matches an existing order
+    client_name: "Client #{i % 40 + 1}", # Ensure client_name matches an existing order
     status: ['pending', 'completed'].sample, # Random status
     state: ['processed', 'unprocessed'].sample, # Random state
     comment: 'OK',
@@ -76,13 +78,11 @@ end
     exception: 'none',
     restock: [true, false].sample, # Random restock
     warehouse_operator_id: operators.sample.id,
-    client_service_officer_id: officers.sample.id
+    client_service_officer_id: officers.sample.id,
+    order: orders.sample
   )
 end
 
-# ReturnItems:
-Return.all.each do |return_item|
-  ReturnItem.create!(return_id: return_item.id, order_item_id: OrderItem.all.sample.id)
-end
+
 
 puts "seed finished"
