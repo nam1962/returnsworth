@@ -1,34 +1,36 @@
 // Specific CSS for your home-page
 .banner {
-  width: 100%;
-  height:auto;
+  width: 100vw;
+  height:100vh;
   background: video;
   background-size: cover;
-  position:relative;
+  position: relative;
 
   video {
-    position:relative;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
   }
 
-  h1 {
+  .title {
     position:absolute;
-    //text-align: center;
-    margin-left: 7rem;
-    top:25px;
+    top:20%;
     font-weight: bolder;
-    font-size: 50px;
+    font-size: 120px;
     color: rgba(204, 242, 5, 1);
+    width: 100%;
+    text-align: center;
   }
 
-  h2{
-    position:absolute;
-    bottom: 10px;
+  .slogan {
+    width: 100%;
+    position: absolute;
+    bottom: 10%;
     font-weight: normal;
     color: rgba(204, 242, 5, 1);
-    //text-align: center;
-    margin-left: 2rem;
+    text-align: center;
+    font-size: 35px;
   }
 }
 
