@@ -26,8 +26,9 @@ class ReturnsController < ApplicationController
   end
 
   def edit
-    @return = Return.find(params[:id])
+    @return = Return.includes(:order).find(params[:id])
   end
+
 
   def update
     @return = Return.find(params[:id])

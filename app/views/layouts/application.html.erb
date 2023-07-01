@@ -17,14 +17,19 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%# <link rel="manifest" href="<%= asset_path 'manifest.json' %>
     <%= render 'shared/ios_pwa_links' %>
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+    <% unless controller_name == "pages" && action_name == "home" %>
+      <%= render "shared/navbar" %>
+    <% end %>
     <%= render "shared/flashes" %>
 
-    <%= yield %>
+    <div class="<%= controller_name == "pages" && action_name == "home" ? "" : "layout" %>">
+
+      <%= yield %>
+    </div>
   </body>
 </html>
