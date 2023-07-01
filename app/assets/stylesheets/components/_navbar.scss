@@ -1,6 +1,6 @@
 .navbar-lewagon {
   position: fixed;
-  bottom: 0;
+  top: 0;
   width: 100%;
   justify-content: space-between;
   background: white;
@@ -18,4 +18,19 @@
 }
 .navbar-width-80 {
   width: 80%;
+}
+
+.layout {
+  padding-top: 120px;
+}
+
+@media (min-width: 100px) and (max-width: 768px) {
+  .navbar-lewagon {
+    bottom: 0;
+    height: fit-content;
+    top: auto;
+  }
+  .layout {
+    padding-top: 0px;
+  }
 }

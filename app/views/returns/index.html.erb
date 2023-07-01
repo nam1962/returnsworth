@@ -7,9 +7,6 @@
       <th>Status</th>
       <th>State</th>
       <th>Comment</th>
-      <th>Additional Cost</th>
-      <th>Exception</th>
-      <th>Restock</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -20,9 +17,6 @@
         <td><%= return_record.status %></td>
         <td><%= return_record.state %></td>
         <td><%= return_record.comment %></td>
-        <td><%= return_record.additional_cost %></td>
-        <td><%= return_record.exception %></td>
-        <td><%= return_record.restock ? "Yes" : "No" %></td>
         <td>
           <%= link_to 'Show', return_record %>
           <% if current_user.warehouse_operator? %>

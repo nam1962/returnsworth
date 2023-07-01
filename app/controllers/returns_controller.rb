@@ -11,6 +11,7 @@ class ReturnsController < ApplicationController
 
   def new
     @return = Return.new
+    @return.return_items.build
   end
 
   def create
@@ -25,8 +26,9 @@ class ReturnsController < ApplicationController
   end
 
   def edit
-    @return = Return.find(params[:id])
+    @return = Return.includes(:order).find(params[:id])
   end
+
 
   def update
     @return = Return.find(params[:id])

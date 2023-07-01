@@ -1,6 +1,5 @@
-import { Controller } from "stimulus";
-import { BrowserQRCodeReader } from "@zxing/library";
-import Rails from "@rails/ujs";
+import { Controller } from "@hotwired/stimulus";
+import { BrowserQRCodeReader } from "@zxing/library"
 
 export default class extends Controller {
   static targets = ["video"];

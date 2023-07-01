@@ -9,9 +9,10 @@
 
 puts "cleaning database"
 Return.destroy_all
+Item.destroy_all
 Order.destroy_all
 User.destroy_all
-Item.destroy_all
+
 
 puts "starting seed"
 
@@ -62,27 +63,27 @@ end
 item_names = ["item1", "item2", "item3", "item4"]
 orders.each do |order|
   rand(1..4).times do
-    Item.create!(name: item_names.sample, order: order)
+    Item.create!(
+      name: item_names.sample,
+      order: order,
+      restock: [true, false].sample,
+      produit: [true, false].sample,
+      emballage: [true, false].sample,
+      additional_cost: rand(10..50),
+    )
   end
 end
 
 # Returns:
 20.times do |i|
   Return.create!(
-    command_number: "10000#{i + 1}",
-    client_name: "Client #{i % 40 + 1}", # Ensure client_name matches an existing order
     status: ['pending', 'completed'].sample, # Random status
     state: ['processed', 'unprocessed'].sample, # Random state
     comment: 'OK',
-    additional_cost: rand(10..50), # Random additional cost
-    exception: 'none',
-    restock: [true, false].sample, # Random restock
     warehouse_operator_id: operators.sample.id,
     client_service_officer_id: officers.sample.id,
     order: orders.sample
   )
 end
-
-
 
 puts "seed finished"
