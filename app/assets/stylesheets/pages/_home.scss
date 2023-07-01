@@ -5,8 +5,9 @@
   background: video;
   background-size: cover;
   position: relative;
+  background-color: black;
 
-  video {
+  .video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -15,7 +16,7 @@
 
   .title {
     position:absolute;
-    top:20%;
+    top:6%;
     font-weight: bolder;
     font-size: 60px;
     color: rgba(204, 242, 5, 1);
@@ -27,16 +28,16 @@
     width: 100%;
     position: absolute;
     bottom: 10%;
-    font-weight: bold;
+    font-weight: bolder;
     color: rgba(204, 242, 5, 1);
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
   }
 }
 
-.btn{
+.btn-lg {
   //margin-block-end: 1rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
   border-radius: 0.5rem;
   font-weight: bolder;
 }
