@@ -4,9 +4,26 @@
     <p class="slogan">Your trusted logistics partner</p>
 </div>
 
-  <div class="row">
-    <button type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6 ">Start scanning</button>
-  </div>
+ <div class="row">
+    <% if user_signed_in? %>
+      <% if current_user.role == "warehouse_operator" %>
+        <button type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6 ">Start Scanning</button>
+      <% else %>
+        <button type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6 ">Create a Return</button>
+      <% end %>
+    <% else %>
+      <%= link_to "Sign Up", new_user_registration_path %>
+      <%= link_to "Sign In", new_user_session_path %>
+    <% end %>
+</div>
+
+  <%# else si le current_user == wharehouse alors montre moi un bouton "créer un retour"%>
+<%# else "false" alors montre moi deux boutons : sign up et sign in %>
+
+
+
+
+
 
 <script>
 var textWrapper = document.querySelector('.slogan');

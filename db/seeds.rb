@@ -82,7 +82,4 @@ end
     order: orders.sample
   )
 end
-
-
-
 puts "seed finished"
