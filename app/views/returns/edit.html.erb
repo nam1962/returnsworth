@@ -1,17 +1,20 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 my-5">
-            <div class="card shadow-lg">
-                <div class="card-body">
+<div class="container">
+<div class="row justify-content-center">
+  <div class="col-lg-6 my-5">
+      <div class="card shadow-lg">
+        <div class="card-body">
+
 
       <%= simple_form_for(@return, local: true, data:{controller: "edit"} ) do |f| %>
-<h1>Order number : <%= f.object.order.order_number %></h1>
-        <div data-edit-target="div1" class="d-block">
-          <div class="button-wrapper">
-            <%= link_to 'All good', returns_path, class: "btn btn-success" %>
-            <div class="btn btn-warning" data-action="click->edit#showDiv1"> Issue </div>
-          </div>
-        </div>
+<h1 style="text-align:center;">Order number : <%= f.object.order.order_number %></h1>
+<div data-edit-target="div1" class="d-block text-center"> <!-- Ajoute le text-center pour centrer les boutons -->
+    <div class="button-wrapper" style="margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px;"> <!-- Utilise flex-direction: column pour positionner les boutons l'un en dessous de l'autre -->
+        <%= link_to 'All good', returns_path, class: "btn btn-success", style: "font-size:20px; padding:15px 30px; width:200px;" %> <!-- Augmente la taille de la police, le padding et la largeur pour rendre le bouton plus gros -->
+        <div class="btn btn-warning" data-action="click->edit#showDiv1" style="font-size:20px; padding:15px 30px; width:200px;"> Issue </div> <!-- Augmente la taille de la police, le padding et la largeur pour rendre le bouton plus gros -->
+    </div>
+</div>
+
+
 
         <%= f.fields_for :items do |i| %>
           <div data-edit-target="div2" class= "d-none">
@@ -38,67 +41,9 @@
 
       <% end %>
 
-      <div class="mt-4">
-                        <%= link_to 'Back', returns_path, class: 'btn btn-secondary' %>
-                    </div>
-</div>
-                </div>
-            </div>
-        </div>
+      <%= link_to 'Back', returns_path %>
     </div>
-</div>
-
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Return</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 my-5">
-            <div class="card shadow-lg">
-                <div class="card-body">
-                    <%= simple_form_for(@return, local: true, data:{controller: "edit"} ) do |f| %>
-                        <h1 class="card-title mb-4">Numéro de commande : <%= f.object.order.order_number %></h1>
-
-                        <div data-edit-target="div1" class="d-block">
-                            <div class="button-wrapper mb-3">
-                                <%= link_to 'Tout est bon', returns_path, class: "btn btn-success" %>
-                                <button class="btn btn-warning" data-action="click->edit#showDiv1"> Problème </button>
-                            </div>
-                        </div>
-
-                        <%= f.fields_for :items do |i| %>
-                            <div data-edit-target="div2" class="d-none">
-                                <%= i.input :produit, as: :radio_buttons %>
-                                <%= i.input :emballage, as: :radio_buttons %>
-                                <button data-action="click->edit#showDiv2" class="btn btn-primary mt-3"> Suivant </button>
-                            </div>
-
-                            <div data-edit-target="div3" class="d-none">
-                                <%= i.input :additional_cost, as: :radio_buttons %>
-                                <%= i.input :restock, as: :radio_buttons %>
-                                <button data-action="click->edit#showDiv3" class="btn btn-primary mt-3"> Suivant </button>
-                            </div>
-                        <% end %>
-
-                        <div data-edit-target="div4" class="d-none">
-                            <%= f.input :comment, as: :text, input_html: { rows: 4, class: 'form-control' } %>
-                            <%= f.submit "Mettre à jour le retour", class: "btn btn-primary mt-3" %>
-                        </div>
-                    <% end %>
-                    <div class="mt-4">
-                        <%= link_to 'Retour', returns_path, class: 'btn btn-secondary' %>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
-</html>
