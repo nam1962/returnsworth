@@ -11,7 +11,7 @@ class ReturnsController < ApplicationController
 
   def new
     @return = Return.new
-    @return.return_items.build
+    @return.items.build
   end
 
   def create
