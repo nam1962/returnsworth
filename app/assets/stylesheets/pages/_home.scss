@@ -12,7 +12,7 @@
     position: absolute;
     inset: 0;
     max-width: 100%;
-    height: 100%;
+    height: 80%;
     object-fit: cover;
   }
 
@@ -29,7 +29,7 @@
   .slogan {
     width: 100%;
     position: absolute;
-    bottom: 10%;
+    bottom: 20%;
     font-weight: bolder;
     color: rgba(204, 242, 5, 1);
     text-align: center;
@@ -38,8 +38,11 @@
 }
 
 .btn-lg {
-  //margin-block-end: 1rem;
-  margin-top: 3rem;
+  position: absolute;
+  top:75%;
+  left:50%;
+  transform: translate(-50%, -50%);
   border-radius: 0.5rem;
   font-weight: bolder;
+  margin-left: 2rem;
 }
