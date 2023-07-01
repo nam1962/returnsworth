@@ -4,5 +4,11 @@
 
 import { application } from "./application"
 
+import EditController from "./edit_controller"
+application.register("edit", EditController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import QrCodeReaderController from "./qr_code_reader_controller"
+application.register("qr-code-reader", QrCodeReaderController)

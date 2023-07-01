@@ -1,29 +1,57 @@
 <div class="container">
-  <div class="row">
-    <div class="col-6 mx-auto my-5">
-      <h1>Edit return</h1>
+<div class="row justify-content-center">
+  <div class="col-lg-6 my-5">
+      <div class="card shadow-lg">
+        <div class="card-body">
 
-      <%= simple_form_for(@return, local: true) do |f| %>
-        <%#= f.select :order_id, Order.all.pluck(:id, :order_number), prompt: "Select an Order", disabled: (current_user.warehouse_operator? && action_name == 'edit') %>
 
-        <%= f.input :status %>
-
-      <div class="d-block">
-        <%= f.input :state %>
-      </div>
-      
-      <div class="d-none">
-        <%= f.input :comment %>
-        <%= f.input :additional_cost %>
-        <%= f.input :exception %>
-        <%= f.input :restock %>
-        <%= f.submit "Update Return" %>
+      <%= simple_form_for(@return, local: true, data:{controller: "edit"} ) do |f| %>
+<h1>Order number : <%= f.object.order.order_number %></h1>
+        <div data-edit-target="div1" class="d-block">
+          <div class="button-wrapper">
+            <%= link_to 'All good', returns_path, class: "btn btn-success" %>
+            <div class="btn btn-warning" data-action="click->edit#showDiv1"> Issue </div>
+          </div>
         </div>
+
+        <%= f.fields_for :items do |i| %>
+          <div data-edit-target="div2" class= "d-none">
+            <%= i.input :produit, as: :radio_buttons %>
+            <%= i.input :emballage, as: :radio_buttons %>
+            <%# <h5> Produit</h5> %>
+            <%#= radio_button_tag :produit, true, false, class: "form-check-input" %>
+            <%# <label class="form-check-label" for="produit">Yes</label> %>
+            <%#= radio_button_tag :produit, false, false, class: "form-check-input" %>
+            <%# <label class="form-check-label" for="produit">No</label> %>
+            <%# <h5> Emballage</h5> %>
+              <%#= radio_button_tag :emballage, true, false, class: "form-check-input" %>
+            <%# <label class="form-check-label" for="emballage">Yes</label> %>
+            <%#= radio_button_tag :emballage, false, false, class: "form-check-input" %>
+            <%# <label class="form-check-label" for="emballage">No</label> %>
+            <div data-action="click->edit#showDiv2"> Next</div>
+          </div>
+
+
+
+          <div data-edit-target="div3" class= "d-none">
+          <%= i.input :additional_cost, as: :radio_buttons %>
+          <%= i.input :restock, as: :radio_buttons %>
+            <div data-action="click->edit#showDiv3"> Next</div>
+          </div>
+        <% end %>
+
+         <div data-edit-target="div4" class= "d-none">
+         <%= f.input :comment, as: :text, input_html: { rows: 4, class: 'form-control' } %>
+          <%= f.submit "Update Return", class: "btn btn-primary mt-3" %>
+        </div>
+
         <%# TODO Ajouter un formulaire nesté par return_item pour pouvoir editer au cas par cas %>
 
       <% end %>
 
       <%= link_to 'Back', returns_path %>
+    </div>
+      </div>
     </div>
   </div>
 </div>
