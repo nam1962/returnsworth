@@ -1,6 +1,26 @@
-<h1>Return Details</h1>
-<p>ID: <%= @return.id %></p>
-<p>Created at: <%= @return.created_at %></p>
-<p>Updated at: <%= @return.updated_at %></p>
-
-<%= link_to 'Back to Returns List', returns_path %>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Return details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Return details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Return ID : <%= @return.id %></h5>
+            <p class="card-text">
+                <strong>Date and time of creation :</strong> <%= @return.created_at.strftime("%d/%m/%Y %H:%M") %><br>
+                <strong>Last update:</strong> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
+            </p>
+        </div>
+    </div>
+    <div class="mt-4">
+        <%= link_to 'Retour à la liste des retours', returns_path, class: 'btn btn-secondary' %>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
