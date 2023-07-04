@@ -1,13 +1,77 @@
-.btn-primary {
-  background-color: #f1b60d!important;
+// boutons violets class="btn btn-lg btn-warning"
+.btn-warning {
+  background-color: rgba(103, 65, 254, 1)!important;
   border-radius: 15px!important;
-
+  color: white;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  text-decoration: none;
+  text-justify: center;
  }
 
- .btn-primary:hover {
-  outline: 2px solid #f1b60d;
+ .btn-warning:hover {
+  outline: 2px solid rgba(166, 158, 199, 1);
 }
 
 .btn-dark:hover {
-  outline: 2px solid #37342c;
+  outline: 2px solid rgba(110, 102, 142, 1);
+}
+
+
+//boutons blancs class="btn btn-lg btn-secondary"
+.btn-outline-secondary {
+  border-radius: 15px!important;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  text-decoration: none;
+  text-justify: center;
+ }
+
+ .btn-primary:hover {
+  outline: 2px solid rgba(223, 219, 219, 1);
+}
+
+.btn-dark:hover {
+  outline: 2px solid rgba(140, 137, 137, 1);
+}
+
+//boutons verts class="btn btn-success btn-sm"
+.btn-success {
+  background-color: rgba(204, 242, 5, 1);
+  border-radius: 15px!important;
+  color: black;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  text-decoration: none;
+  text-justify: center;
+ }
+
+ .btn-primary:hover {
+  outline: 2px solid rgba(230, 233, 215, 1);
+}
+
+.btn-dark:hover {
+  outline: 2px solid rgba(169, 170, 163, 1);
+}
+// boutons return verts class="btn btn-success btn-xs"
+.btn-success {
+  background-color: rgba(204, 242, 5, 1);
+  border-radius: 15px!important;
+  color: black;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  text-decoration: none;
+  text-justify: center;
+ }
+
+ .btn-primary:hover {
+  outline: 2px solid rgba(230, 233, 215, 1);
+}
+
+.btn-dark:hover {
+  outline: 2px solid rgba(169, 170, 163, 1);
 }
