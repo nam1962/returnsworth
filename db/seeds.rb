@@ -8,10 +8,14 @@
 # db/seeds.rb
 
 puts "cleaning database"
-Return.destroy_all
 Item.destroy_all
+Return.destroy_all
 Order.destroy_all
 User.destroy_all
+
+Dir.glob(Rails.root.join('public', 'qr_codes', '*')).each do |filename|
+  File.delete(filename)
+end
 
 
 puts "starting seed"
