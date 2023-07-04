@@ -1,24 +1,24 @@
-<div class="banner">
-    <%= video_tag "video_homepage.mp4", autoplay: true, loop: true, controls: false %>
-    <h1 class="title">Eleanor</h1>
-    <p class="slogan">Your trusted logistics partner</p>
-</div>
-
- <div class="row">
-    <% if user_signed_in? %>
-      <% if current_user.role == "warehouse_operator" %>
-        <a href="/logistics" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Start Scanning</a>
+<div class="content-wrapper">
+  <div class="banner">
+      <%= video_tag "video_homepage.mp4", autoplay: true, loop: true, controls: false %>
+      <h1 class="title">Eleanor</h1>
+      <p class="slogan">Your trusted logistics partner : Eleanor Returnsworth helps coordinate e-commerce client service officers with warehouse operators to monitor product returns efficiently.</p>
+  </div>
+  <div class="row">
+      <% if user_signed_in? %>
+        <% if current_user.role == "warehouse_operator" %>
+          <a href="/logistics" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Start Scanning</a>
+        <% else %>
+          <a href="/returns" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Create a Return</a>
+        <% end %>
       <% else %>
-        <a href="/returns" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Create a Return</a>
+        <%= link_to "Sign Up", new_user_registration_path %>
+        <%= link_to "Sign In", new_user_session_path %>
       <% end %>
-    <% else %>
-      <%= link_to "Sign Up", new_user_registration_path %>
-      <%= link_to "Sign In", new_user_session_path %>
-    <% end %>
+  </div>
 </div>
-
   <%# else si le current_user == wharehouse alors montre moi un bouton "créer un retour"%>
-<%# else "false" alors montre moi deux boutons : sign up et sign in %>
+  <%# else "false" alors montre moi deux boutons : sign up et sign in %>
 
 
 <script>

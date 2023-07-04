@@ -1,13 +1,41 @@
 .btn-primary {
-  background-color: #f1b60d!important;
+  background-color: rgba(255, 255, 255, 1)!important;
   border-radius: 15px!important;
 
  }
 
  .btn-primary:hover {
-  outline: 2px solid #f1b60d;
+  outline: 2px solid rgba(217, 217, 217, 1);
 }
 
 .btn-dark:hover {
-  outline: 2px solid #37342c;
+  outline: 2px solid rgba(108, 106, 106, 1);
+}
+
+.success {
+  background-color: rgba(204, 242, 5, 1);
+  border-radius: 15px!important;
+
+ }
+
+ .btn-success:hover {
+  outline: 2px solid rgba(182, 193, 122, 1);
+}
+
+.btn-dark:hover {
+  outline: 2px solid rgba(117, 123, 83, 1);
+}
+
+.btn-warning {
+  background-color: rgba(103, 65, 254, 1)!important;
+  border-radius: 15px!important;
+
+ }
+
+ .btn-warning:hover {
+  outline: 2px solid rgba(151, 142, 188, 1);
+}
+
+.btn-dark:hover {
+  outline: 2px solid rgba(106, 100, 130, 1);
 }

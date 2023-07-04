@@ -28,8 +28,7 @@
     <%= render "shared/flashes" %>
 
     <div class="<%= controller_name == "pages" && action_name == "home" ? "" : "layout" %>">
-
-      <%= yield %>
+        <%= yield %>
     </div>
   </body>
 </html>
