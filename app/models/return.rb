@@ -15,7 +15,7 @@ class Return < ApplicationRecord
 
 
   def create_qr_code
-    qrcode = RQRCode::QRCode.new("Return-#{self.id}")
+    qrcode = RQRCode::QRCode.new("returns/#{self.id}")
     png = qrcode.as_png(size: 300)
     save_qr_code_locally(png)
   end
