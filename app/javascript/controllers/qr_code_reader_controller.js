@@ -13,18 +13,7 @@ export default class extends Controller {
     this.codeReader
       .decodeFromInputVideoDevice(undefined, this.videoTarget)
       .then((result) => {
-        let qrDataFromReader = result.text;
-        let formData = new FormData();
-        let qrCodeParams = {
-          qr_data: qrDataFromReader
-        };
-        formData.append("qr_code_json_data", JSON.stringify(qrCodeParams));
-
-        Rails.ajax({
-          url: "/qr_codes",
-          type: "post",
-          data: formData
-        });
+        window.location.href = result.text;
       })
       .catch((error) => {
         console.error(error);
