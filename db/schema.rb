@@ -34,12 +34,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_123556) do
   end
 
   create_table "returns", force: :cascade do |t|
-    t.string "command_number"
-    t.string "client_name"
     t.string "status"
     t.string "state"
     t.string "comment"
-    t.string "exception"
     t.boolean "restock"
     t.bigint "return_id"
     t.datetime "created_at", null: false
