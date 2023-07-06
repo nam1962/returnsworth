@@ -24,6 +24,13 @@
   width: 80%;
 }
 
+.navbar-toggler {
+  border: transparent!important;
+}
+.brand-font {
+  justify-content: right;
+}
+
 .avatar {
   display: inline-block;
 }
@@ -37,6 +44,9 @@
     bottom: 0;
     height: fit-content;
     top: auto;
+    left:0;
+    width: 100%;
+    margin: 0;
   }
   .layout {
     padding-top: 0px;
