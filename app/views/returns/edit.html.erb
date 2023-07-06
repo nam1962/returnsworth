@@ -18,6 +18,7 @@
           <div data-edit-target="div2" class= "d-none">
             <%= i.input :produit, as: :radio_buttons %>
             <%= i.input :emballage, as: :radio_buttons %>
+            <%= i.input :photo, as: :file, input_html:{accept: "image/*", capture: "environment"} %>
             <%# <h5> Produit</h5> %>
             <%#= radio_button_tag :produit, true, false, class: "form-check-input" %>
             <%# <label class="form-check-label" for="produit">Yes</label> %>
