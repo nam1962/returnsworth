@@ -15,29 +15,27 @@
 </div>
 
         <%= f.fields_for :items do |item_form| %>
-          <div data-edit-target="div2" class= "d-none">
-            <%= item_form.input :produit, as: :radio_buttons %>
+          <div data-edit-target="div2" class= "d-none" >
+            <%=  item_form.input :produit, as: :radio_buttons %>
             <%= item_form.input :emballage, as: :radio_buttons %>
-            <div data-action="click->edit#showDiv2"> Next</div>
+            <div style="text-align:center;" class="btn btn-lg btn-warning"  data-action="click->edit#showDiv2"> Next →</div>
           </div>
 
 
           <div data-edit-target="div3" class= "d-none">
           <%= item_form.input :additional_cost, as: :radio_buttons %>
           <%= item_form.input :restock, as: :radio_buttons %>
-            <div data-action="click->edit#showDiv3"> Next</div>
+            <div class="btn btn-lg btn-warning"  data-action="click->edit#showDiv3"> Next →</div>
           </div>
 
 
          <div data-edit-target="div4" class= "d-none">
          <%= f.input :comment, as: :text, input_html: { rows: 4, class: 'form-control' } %>
-          <%= f.submit "Update Return", class: "btn btn-primary mt-3" %>
+          <%= f.submit "Update Return", class: "btn btn-lg btn-warning" %>
         </div>
         <% end %>
         <%# TODO Ajouter un formulaire nesté par item pour pouvoir editer au cas par cas %>
       <% end %>
-
-      <%= link_to 'Back', returns_path %>
     </div>
       </div>
     </div>

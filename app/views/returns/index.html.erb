@@ -2,7 +2,7 @@
 
 <%= form_with url: returns_path, method: :get, class: "d-flex justify-content-center mt-4" do %>
   <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 200px;", placeholder: "Find an order" %>
-  <%= submit_tag "Search", name: "", class: "btn btn-primary ml-2" %>
+  <%= submit_tag "Search", name: "", class: "btn btn-success btn-xs" %>
 <% end %>
 
 <div class="row mt-4">
@@ -15,10 +15,10 @@
           <p class="card-text">Status: <%= return_record.status %></p>
           <p class="card-text">State: <%= return_record.state %></p>
         </div>
-        <div class="card-footer d-flex justify-content-end">
-          <%= link_to 'Show', return_record, class: 'btn btn-primary mr-2' %>
+        <div class="card-footer d-flex justify-content-end" >
+          <%= link_to 'Show', return_record, class: 'btn btn-success btn-xs' %>
           <% if current_user.warehouse_operator? %>
-            <%= link_to 'Edit', edit_return_path(return_record), class: 'btn btn-secondary' %>
+            <%= link_to 'Edit', edit_return_path(return_record), class: 'btn btn-success btn-xs' %>
           <% end %>
         </div>
       </div>
