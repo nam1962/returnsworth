@@ -5,9 +5,9 @@ export default class extends Controller {
   static targets = ["div1", "div2", "div3", "div4"]
 
   showDiv1() {
-    this.div2Target.classList.remove("d-none")
-    this.div2Target.classList.add("d-block")
-    this.div1Target.classList.add("d-none")
+    this.div2Target.classList.remove("d-none");
+    this.div2Target.classList.add("d-block");
+    this.div1Target.classList.add("d-none");
   }
 
   showDiv2() {

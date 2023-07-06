@@ -1,17 +1,25 @@
 class ReturnsController < ApplicationController
-
   # before_action :authenticate_user!
   before_action :check_client_service_officer, only: [:new, :create]
   before_action :check_warehouse_operator, only: [:edit, :update]
 
-
   def index
-    @returns = Return.all
+    @returns = if params[:query].present?
+                 sql_query = "order_number ILIKE :query"
+                 Return.joins(:order).where(sql_query, query: "%#{params[:query]}%")
+               else
+                 Return.all
+               end
   end
 
   def new
     @return = Return.new
-    @return.return_items.build
+    if params[:query].present?
+      sql_query = "order_number ILIKE :query"
+      @orders = Order.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @orders = Order.all
+    end
   end
 
   def create
@@ -29,7 +37,6 @@ class ReturnsController < ApplicationController
     @return = Return.includes(:order).find(params[:id])
   end
 
-
   def update
     @return = Return.find(params[:id])
     if @return.update(return_params)
@@ -43,13 +50,13 @@ class ReturnsController < ApplicationController
     @return = Return.find(params[:id])
   end
 
-
   private
 
   def return_params
-    params.require(:return).permit(:order_id, :warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :exception, items_attributes: [:produit, :emballage, :additional_cost, :restock, :id, :photo])
-  end
 
+    params.require(:return).permit(:order_id, :warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :exception, items_attributes: [:produit, :emballage, :additional_cost, :restock, :id, :photo])
+
+  end
 
   def check_client_service_officer
     unless current_user.client_service_officer?

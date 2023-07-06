@@ -1,33 +1,31 @@
-<h1>Returns</h1>
+<h1>Hi Amaury !</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Order Number</th>
-      <th>Status</th>
-      <th>State</th>
-      <th>Comment</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @returns.each do |return_record| %>
-      <tr>
-        <td><%= return_record.items.first.present? ? return_record.order.order_number : 'N/A' %></td>
-        <td><%= return_record.status %></td>
-        <td><%= return_record.state %></td>
-        <td><%= return_record.comment %></td>
-        <td>
-          <%= link_to 'Show', return_record %>
+<%= form_with url: returns_path, method: :get, class: "d-flex justify-content-center mt-4" do %>
+  <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 200px;", placeholder: "Find an order" %>
+  <%= submit_tag "Search", name: "", class: "btn btn-primary ml-2" %>
+<% end %>
+
+<div class="row mt-4">
+  <% @returns.each do |return_record| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Order Number: <%= return_record.items.first.present? ? return_record.order.order_number : 'N/A' %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Customer Name: <%= return_record.order.client_name %></h6>
+          <p class="card-text">Status: <%= return_record.status %></p>
+          <p class="card-text">State: <%= return_record.state %></p>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+          <%= link_to 'Show', return_record, class: 'btn btn-primary mr-2' %>
           <% if current_user.warehouse_operator? %>
-            <%= link_to 'Edit', edit_return_path(return_record) %>
+            <%= link_to 'Edit', edit_return_path(return_record), class: 'btn btn-secondary' %>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <% if current_user.client_service_officer? %>
-  <%= link_to 'New Return', new_return_path %>
+  <%= link_to 'New Return', new_return_path, class: 'btn btn-primary mt-4' %>
 <% end %>
