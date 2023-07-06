@@ -1,29 +1,41 @@
 <div class="banner">
-    <%= video_tag "video_homepage.mp4", autoplay: true, loop: true, controls: true %>
-    <h1 class="title">Eleanor</h1>
-    <p class="slogan">Your trusted logistics partner</p>
+  <%= video_tag "video_homepage.mp4", autoplay: true, loop: true, controls: true %>
+  <h1 class="title">Eleanor</h1>
+  <p class="slogan">Your trusted logistics partner</p>
 </div>
 
-  <div class="row">
-    <button type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6 ">Start scanning</button>
-  </div>
+<div class="row">
+  <% if current_user.warehouse_operator? %>
+    <%= link_to logistics_path, class: 'btn btn-success btn-lg btn-block mx-auto w-50 py-3' do %>
+      Start scanning
+    <% end %>
+  <% else %>
+    <%= link_to new_returns_path, class: 'btn btn-success btn-lg btn-block mx-auto w-50 py-3' do %>
+      New return
+    <% end %>
+  <% end %>
+</div>
+
+<div class="position-fixed bottom-0 start-0 p-3">
+  <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary btn-lg' %>
+</div>
 
 <script>
-var textWrapper = document.querySelector('.slogan');
-textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+  var textWrapper = document.querySelector('.slogan');
+  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-anime.timeline({loop: true})
-  .add({
-    targets: '.slogan .letter',
-    opacity: [0,1],
-    easing: "easeInOutQuad",
-    duration: 2250,
-    delay: (el, i) => 150 * (i+1)
-  }).add({
-    targets: '.slogan',
-    opacity: 0,
-    duration: 1000,
-    easing: "easeOutExpo",
-    delay: 1000
-  });
+  anime.timeline({loop: true})
+    .add({
+      targets: '.slogan .letter',
+      opacity: [0, 1],
+      easing: "easeInOutQuad",
+      duration: 2250,
+      delay: (el, i) => 150 * (i + 1)
+    }).add({
+      targets: '.slogan',
+      opacity: 0,
+      duration: 1000,
+      easing: "easeOutExpo",
+      delay: 1000
+    });
 </script>

@@ -18,8 +18,14 @@
         </div>
     </div>
     <div class="mt-4">
-        <%= link_to 'Retour à la liste des retours', returns_path, class: 'btn btn-secondary' %>
+    <% if current_user.warehouse_operator? %>
+        <%= link_to 'Back to returns', returns_path, class: 'btn btn-secondary' %>
+    <% elsif %>
+    <% current_user.client_service_officer?%>
+    <%= link_to 'Back to orders', new_return_path, class: 'btn btn-secondary' %>
+    <% end %>
     </div>
+
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
