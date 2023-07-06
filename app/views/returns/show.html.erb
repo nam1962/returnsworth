@@ -26,3 +26,10 @@
     <% end %>
     </div>
 
+
+<% @return.items.each do |item| %>
+  <%= image_tag item.photo if item.photo.attached? %>
+  <p><%= item.name %></p>
+<% end %>
+
+
