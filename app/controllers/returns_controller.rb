@@ -33,7 +33,7 @@ class ReturnsController < ApplicationController
   def update
     @return = Return.find(params[:id])
     if @return.update(return_params)
-      redirect_to returns_path, notice: 'Return was successfully updated.'
+      redirect_to return_path(@return), notice: 'Return was successfully updated.'
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class ReturnsController < ApplicationController
   private
 
   def return_params
-    params.require(:return).permit(:order_id, :warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :additional_cost, :exception, :restock, return_items_attributes: [:order_item_id])
+    params.require(:return).permit(:order_id, :warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :exception, items_attributes: [:produit, :emballage, :additional_cost, :restock, :id, :photo])
   end
 
 
