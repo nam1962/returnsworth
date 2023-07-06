@@ -33,7 +33,7 @@ class ReturnsController < ApplicationController
   def update
     @return = Return.find(params[:id])
     if @return.update(return_params)
-      redirect_to returns_path, notice: 'Return was successfully updated.'
+      redirect_to return_path(@return), notice: 'Return was successfully updated.'
     else
       render :edit
     end
