@@ -5,7 +5,7 @@
   </div>
 
   <div class="position-relative">
-    <h2 class="mb-4">QR Code Reader on Rails with Stimulus</h2>
+    <h2 class="mb-4">Scann QR code</h2>
     <div data-controller="qr-code-reader">
       <video data-qr-code-reader-target="video" width="500" height="400"></video>
     </div>
@@ -15,3 +15,5 @@
     <a href="<%= returns_path %>" class="btn btn-lg btn-primary d-inline-block w-100">I don't have a QR code</a>
   </div>
 </div>
+
+<a href="/returns/<% Return.last %>/edit" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">QR code scanné !</a>

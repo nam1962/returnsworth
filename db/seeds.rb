@@ -8,10 +8,15 @@
 # db/seeds.rb
 
 puts "cleaning database"
-Return.destroy_all
 Item.destroy_all
+Return.destroy_all
 Order.destroy_all
 User.destroy_all
+
+
+Dir.glob(Rails.root.join('public', 'qr_codes', '*')).each do |filename|
+  File.delete(filename)
+end
 
 
 puts "starting seed"
@@ -24,6 +29,9 @@ amaury = User.create!(
   first_name: "Amaury",
   last_name: "WH"
 )
+amaury.save!
+file_amaury = URI.open("https://avatars.githubusercontent.com/u/7419235?v=4")
+amaury.photo.attach(io: file_amaury, filename: "nes.png", content_type: "image/png")
 
 celine = User.create!(
   email: "celine@lewagon.com",
@@ -32,6 +40,9 @@ celine = User.create!(
   first_name: "Celine",
   last_name: "CSO"
 )
+celine.save!
+file_celine = URI.open("https://avatars.githubusercontent.com/u/121505176?v=4")
+celine.photo.attach(io: file_celine, filename: "nes.png", content_type: "image/png")
 
 # Users:
 officers = [celine] + 3.times.map do |i|

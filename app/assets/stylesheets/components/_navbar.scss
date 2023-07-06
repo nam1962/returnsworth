@@ -5,6 +5,10 @@
   background: white;
 }
 
+.container-fluid {
+ margin-left: 0px;
+}
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
   .navbar-nav .nav-item{
@@ -19,6 +23,17 @@
   width: 80%;
 }
 
+.navbar-toggler {
+  border: transparent!important;
+}
+.brand-font {
+  justify-content: right;
+}
+
+.avatar {
+  display: inline-block;
+}
+
 .layout {
   padding-top: 120px;
 }
@@ -28,6 +43,9 @@
     bottom: 0;
     height: fit-content;
     top: auto;
+    left:0;
+    width: 100%;
+    margin: 0;
   }
   .layout {
     padding-top: 0px;
