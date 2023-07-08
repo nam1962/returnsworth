@@ -59,6 +59,7 @@ class ReturnsController < ApplicationController
 
   end
 
+
   def check_client_service_officer
     unless current_user.client_service_officer?
       flash[:alert] = "You are not authorized to create returns."

@@ -1,5 +1,5 @@
 <div class="navbar navbar-fixed-bottom navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid navbar-width-100">
+  <%# <div class="container-fluid navbar-width-100"> %>
     <%= link_to "#", class: "navbar-brand" do %>
       <%# <div class="d-flex align-items-center justify-content-center"> %>
         <%= image_tag "logobis.png" %>
@@ -9,11 +9,13 @@
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <a href="#" class="avatar ml-auto" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
       <% if current_user.photo.attached? %>
         <%#= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu"%>
       <% else %>
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+            <%= image_tag "https://www.nicepng.com/png/detail/804-8049853_med-boukrima-specialist-webmaster-php-e-commerce-web.png", class: "avatar", alt: "dropdown menu" %>
       <% end %>
+
           </a>
     </button>
 
