@@ -38,7 +38,8 @@ celine = User.create!(
   password: "123456",
   role: "client_service_officer",
   first_name: "Celine",
-  last_name: "CSO"
+  last_name: "CSO",
+  admin: true
 )
 celine.save!
 file_celine = URI.open("https://avatars.githubusercontent.com/u/121505176?v=4")
@@ -66,16 +67,23 @@ operators = [amaury] + 5.times.map do |i|
 end
 
 # Orders:
+customer_first_names = ["Alain", "Annie", "Benoît", "Léontine", "Clara", "Ella", "Félix", "Guy", "Alfred", "Pacôme"]
+customer_last_names = ["Bécile", "Versaire", "Magimel", "Honnête", "Covayre", "Michu", "Cité", "Tarre", "Poste", "Macheproh"]
+
 orders = (1..40).map do |i|
-  Order.create!(order_number: 1000 + i, client_name: "Client #{i}")
+  customer_first_name = customer_first_names.sample
+  customer_last_name = customer_last_names.sample
+  customer_name = "#{customer_first_name} #{customer_last_name}"
+  Order.create!(order_number: 1000 + i, client_name: customer_name)
 end
 
 # Items:
-item_names = ["item1", "item2", "item3", "item4"]
+colors = ["noir", "rouge", "bleu", "vert", "jaune", "orange", "violet"]
+
 orders.each do |order|
   rand(1..4).times do
     Item.create!(
-      name: item_names.sample,
+      name: "crayon " + colors.sample,
       order: order,
       restock: [true, false].sample,
       produit: [true, false].sample,

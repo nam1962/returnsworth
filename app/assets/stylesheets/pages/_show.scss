@@ -1,0 +1,36 @@
+
+  h1 {
+    text-align: center;
+  }
+
+  .card {
+    width:100%;
+    height:80%;
+  }
+
+  .card-header {
+    align-self: center;
+    width: 75%;
+    height: 170px;
+  }
+
+  .xcard-img-top {
+    align-self: center;
+    width: 75%;
+    height: 170px;
+  }
+
+  .a.btn.btn-secondary{
+    align-self: center;
+  }
+.fa-solid.green {
+  background-color: $vert;
+}
+
+.fa-solid.purple {
+  background-color: $violette;
+}
+
+  @media (min-width: 100px) and (max-width: 768px) {
+
+  }

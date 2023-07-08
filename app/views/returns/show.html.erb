@@ -1,48 +1,49 @@
-<div class="container mt-5 d-flex align-items-center justify-content-center" style="height: 100vh;">
-    <div>
-        <h1 class="mb-4">Summary</h1>
-        <div class="card">
-            <div class="card-header">
-                <h3 class="mt-4 d-flex justify-content-center" class="card-title" >Return ID : <%= @return.id %></h3>
+<div class="container mt-5 align-items-center justify-content-center" style="height: 100vh;">
+  <div class="align-items-start">
+    <h1 class="mb-4 align-self-start">Let's recap !</h1>
+    <div class="card">
+      <div class="card-header">
+        <img class="xcard-img-top" src="..." alt="Card image cap">
+      </div>
+        <div class="mt-4 d-flex justify-content-center" class="card-title" >Return ID : <%= @return.id %></div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <div class="row">
+            <div class="col-12 col-md-6">
+               <strong>Order name</strong> <%= @return.order.order_number %>
+              <br>
+              <strong>Status</strong> <%= @return.status %>
+              <br>
+              <strong>nb Items</strong> <%= @return.order.items.count %>
+              <br>
+              <strong>Last update</strong> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
             </div>
-            <div class="card-body">
-                <p class="card-text">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <strong>Order name:</strong> <%= @return.order.order_number %>
-                            <br>
-                            <strong>Status:</strong> <%= @return.status %>
-                            <br>
-                            <strong>State:</strong> <%= @return.state %>
-                            <br>
-                            <strong>nb Items:</strong> <%= @return.order.items.count %>
-                            <br>
-                            <strong>Last update:</strong> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
-                        </div>
-                        <div class="col-md-6">
-                            <% @return.items.each do |item| %><br>
-                                <strong>Item name:</strong> <%= item.name %>
-                                <br>
-                                <strong>Produit:</strong> <%= item.produit? %>
-                                <br>
-                                <strong>Emballage:</strong> <%= item.emballage? %>
-                                <br>
-                                <strong>Restock:</strong> <%= item.restock? %>
-                                <br>
-                                <strong>Additional cost:</strong> <%= item.additional_cost %>€
-                                <br>
-                            <% end %>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <strong>Comment:</strong> <%= @return.comment %>
-                        </div>
-                    </div>
-                </p>
+            <div class="col-12 col-md-6">
+              <% @return.items.each do |item| %><br>
+                  <strong>Item name:</strong> <%= item.name %>
+                  <br>
+                  <i class="fa-solid fa-box fa-beat-fade <%= item.produit? ? "green" : "purple" %>"></i>  <%= item.produit? ? "OK" : "Defective" %>
+                  <br>
+                  <i class="fa-solid fa-gift fa-beat-fade <%= item.emballage? ? "green" : "purple" %>"></i>  <%= item.emballage? ? "OK" : "Defective" %>
+                  <br>
+                  <i class="fa-solid fa-recycle fa-beat-fade <%= item.restock? ? "green" : "purple" %>"></i>  <%= item.restock? ? "Restored" : "Defective" %>
+                  <br>
+                  <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade <%= item.additional_cost? ? "green" : "purple" %>"></i>  <%= item.additional_cost %>€
+                  <br>
+              <% end %>
             </div>
-        </div>
-        <div class="mt-4 d-flex justify-content-center">
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <i class="fa-solid fa-pen-to-square"></i>  <strong>Comment:</strong> <%= @return.comment %>
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
+
+       <div class="mt-4 d-flex justify-content-center">
             <% if current_user.warehouse_operator? %>
                 <%= link_to 'Back to returns', logistics_path, class: 'btn btn-secondary' %>
             <% elsif current_user.client_service_officer?%>
@@ -50,4 +51,5 @@
             <% end %>
         </div>
     </div>
+   </div>
 </div>
