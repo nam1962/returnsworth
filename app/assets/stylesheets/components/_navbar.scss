@@ -5,6 +5,13 @@
   background: white;
 }
 
+.navbar-brand {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .container-fluid {
  margin-left: 0px;
 }
