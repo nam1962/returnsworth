@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get 'logistics', to: 'pages#logistics'
   # Defines the root path route ("/")
   # root "articles#index"
+# Redirects returnsworth.online to eleanor.returnsworth.online
+# get '/', to: redirect('https://eleanor.returnsworth.online', status: 301)
 end

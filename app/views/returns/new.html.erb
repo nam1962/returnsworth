@@ -1,12 +1,34 @@
-<h1>Create a new return</h1>
+<h1>Hi Céline! </h1>
 
-<%= form_with(model: @return, local: true) do |form| %>
-  <div>
-    <%= form.label :order_id, "Order ID" %>
-    <%= form.select :order_id, Order.all.pluck(:id, :order_number), prompt: "Select an Order" %>
-  </div>
-
-  <%= form.submit "Create Return" %>
+<%= form_with url: new_return_path, method: :get, class: "d-flex justify-content-center mt-4" do %>
+  <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 200px;", placeholder: "Find an order" %>
+  <%= submit_tag "Search", name: "", class: "btn btn-primary ml-2" %>
 <% end %>
 
-<%= link_to 'Back', returns_path %>
+
+<% @orders.each_slice(3).with_index do |order_group, index| %>
+  <div class="row">
+    <% order_group.each do |order| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Order ID: <%= order.order_number %> - <%= order.client_name %></h5>
+
+            <div class="d-flex flex-wrap">
+              <% order.items.each do |item| %>
+                <span class="badge badge-primary ml-2 mb-2"><%= item.name %></span>
+              <% end %>
+            </div>
+
+          </div>
+          <div class="card-footer d-flex justify-content-end">
+            <%= form_with(model: Return.new, local: true) do |form| %>
+              <%= form.hidden_field :order_id, value: order.id %>
+              <%= form.submit "Create Return", class: "btn btn-success btn-xs" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,25 +1,27 @@
 import { Controller } from "@hotwired/stimulus"
 
+let nbElements = 1
 // Connects to data-controller="edit"
 export default class extends Controller {
-  static targets = ["div1", "div2", "div3", "div4"]
+  static targets = ["div1", "nbElements", "divFin"]
 
   showDiv1() {
-    this.div2Target.classList.remove("d-none")
-    this.div2Target.classList.add("d-block")
-    this.div1Target.classList.add("d-none")
+    this.div1Target.classList.add("d-none");
+    document.getElementById(`item0`).classList.remove("d-none");
   }
 
   showDiv2() {
-    this.div3Target.classList.remove("d-none")
-    this.div3Target.classList.add("d-block")
-    this.div2Target.classList.add("d-none")
-  }
+    if (nbElements < parseInt(this.nbElementsTarget.innerHTML)) {
+      if (nbElements == 0) {
 
-  showDiv3() {
-    this.div4Target.classList.remove("d-none")
-    this.div4Target.classList.add("d-block")
-    this.div2Target.classList.add("d-none")
-    this.div3Target.classList.add("d-none")
+      } else {
+        document.getElementById(`item${nbElements - 1}`).classList.add("d-none")
+      }
+      document.getElementById(`item${nbElements}`).classList.remove("d-none")
+    } else {
+      document.getElementById(`item${nbElements - 1}`).classList.add("d-none")
+      this.divFinTarget.classList.remove("d-none");
+    }
+    nbElements += 1
   }
 }
