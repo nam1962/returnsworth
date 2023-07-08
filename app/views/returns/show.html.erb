@@ -10,8 +10,9 @@
     <h1 class="mb-4">Summary</h1>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Return ID : <%= @return.id %></h5>
+            <h5 class="card-title">Return ID : <%= @return.order.order_number %></h5>
             <p class="card-text">
+                <strong>nb Items :</strong> <%= @return.order.items.count%><br>
                 <strong>Restock :</strong> <%= @return.restock?%><br>
                 <strong>Order name</strong> <%= @return.order.order_number%><br>
                 <strong>Status:</strong> <%= @return.status %><br>

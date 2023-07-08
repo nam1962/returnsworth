@@ -35,6 +35,7 @@ class ReturnsController < ApplicationController
 
   def edit
     @return = Return.includes(:order).find(params[:id])
+    # @return.items.build
   end
 
   def update
@@ -54,7 +55,7 @@ class ReturnsController < ApplicationController
 
   def return_params
 
-    params.require(:return).permit(:order_id, :warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :exception, items_attributes: [:produit, :emballage, :additional_cost, :restock, :id, :photo])
+    params.require(:return).permit(:warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :exception, order_attributes: [ items_attributes: [:produit, :emballage, :additional_cost, :restock, :photo]])
 
   end
 

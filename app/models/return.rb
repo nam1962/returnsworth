@@ -3,7 +3,7 @@ class Return < ApplicationRecord
   belongs_to :client_service_officer, foreign_key: :client_service_officer_id, class_name: "User"
   belongs_to :order
   has_many :items, through: :order
-  accepts_nested_attributes_for :items # todo coucou ???
+  accepts_nested_attributes_for :order
 
   after_create :create_qr_code
 

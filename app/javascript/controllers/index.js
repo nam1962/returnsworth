@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AdditionalCostController from "./additional_cost_controller"
+application.register("additional-cost", AdditionalCostController)
+
 import EditController from "./edit_controller"
 application.register("edit", EditController)
 
