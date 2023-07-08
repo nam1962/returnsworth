@@ -10,8 +10,8 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <a href="#" class="avatar ml-auto" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-      <% if current_user.photo.attached? %>
-        <%#= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu"%>
+      <% if user_signed_in? && current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu"%>
       <% else %>
             <%= image_tag "https://www.nicepng.com/png/detail/804-8049853_med-boukrima-specialist-webmaster-php-e-commerce-web.png", class: "avatar", alt: "dropdown menu" %>
       <% end %>
@@ -37,6 +37,11 @@
           <% end %>
           <li class="nav-item dropdown">
 
+            <% if user_signed_in? && current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu"%>
+            <% else %>
+                  <%= image_tag "https://www.nicepng.com/png/detail/804-8049853_med-boukrima-specialist-webmaster-php-e-commerce-web.png", class: "avatar", alt: "dropdown menu" %>
+            <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>
               <%= link_to "Another action", "#", class: "dropdown-item" %>
