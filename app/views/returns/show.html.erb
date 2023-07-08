@@ -1,8 +1,13 @@
-<h1>Return Details</h1>
-<p>ID: <%= @return.id %></p>
-<p>Created at: <%= @return.created_at %></p>
-<p>Updated at: <%= @return.updated_at %></p>
+<div class="container">
+  <h1>Return Details</h1>
 
-<%#= link_to 'Back to Returns List', returns_path %>
-<a href="returns/edit" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-primary p-6">Start Scanning</a>
-<a href="/returns" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-warning p-6">Start Scanning</a>
+  <div class="card">
+    <img class="xcard-img-top" src="..." alt="Card image cap">
+    <p>ID: <%= @return.id %></p>
+      <div class="card-body">
+        <p><a href="#" class="btn btn-success">Created at:</a>  <a href="#" class="btn btn-outline-secondary float-end">"<%= @return.created_at %>"</a></p>
+        <p><a href="#" class="btn btn-warning">Updated at:</a>  <a href="#" class="btn btn-outline-secondary float-end">"<%= @return.updated_at %>"</a></p>
+        <p class="mt-auto"><a href="#" class="btn btn-success">OK</a>  <a href="#" class="btn btn-warning float-end">OUPS</a></p>
+      </div>
+  </div>
+</div>

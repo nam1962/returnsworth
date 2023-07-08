@@ -29,7 +29,6 @@ class ReturnsController < ApplicationController
     @return = Return.includes(:order).find(params[:id])
   end
 
-
   def update
     @return = Return.find(params[:id])
     if @return.update(return_params)
@@ -43,13 +42,11 @@ class ReturnsController < ApplicationController
     @return = Return.find(params[:id])
   end
 
-
   private
 
   def return_params
     params.require(:return).permit(:order_id, :warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :additional_cost, :exception, :restock, return_items_attributes: [:order_item_id])
   end
-
 
   def check_client_service_officer
     unless current_user.client_service_officer?
