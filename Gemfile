@@ -56,8 +56,8 @@ gem "simple_form", github: "heartcombo/simple_form"
 # Added by Eleanor devs
 gem "meta-tags"
 gem 'rqrcode'
-
 gem "cloudinary"
+gem "rails_admin", "3.0"
 
 
 group :development, :test do
@@ -84,3 +84,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+gem "sassc-rails"
