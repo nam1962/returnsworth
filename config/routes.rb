@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 # Redirects returnsworth.online to eleanor.returnsworth.online
-get '/', to: redirect('https://eleanor.returnsworth.online', status: 301)
+# get '/', to: redirect('https://eleanor.returnsworth.online', status: 301)
 end

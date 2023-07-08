@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Return details</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container mt-5">
-    <h1 class="mb-4">Return details</h1>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Return ID : <%= @return.id %></h5>
-            <p class="card-text">
-                <strong>Date and time of creation :</strong> <%= @return.created_at.strftime("%d/%m/%Y %H:%M") %><br>
-                <strong>Last update:</strong> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
-            </p>
-        </div>
-    </div>
+<div class="container">
+  <h1>Return Details</h1>
+
+  <div class="card">
+    <img class="xcard-img-top" src="..." alt="Card image cap">
+    <p>ID: <%= @return.id %></p>
+      <div class="card-body">
+        <p><a href="#" class="btn btn-success">Created at:</a>  <a href="#" class="btn btn-outline-secondary float-end">"<%= @return.created_at %>"</a></p>
+        <p><a href="#" class="btn btn-warning">Updated at:</a>  <a href="#" class="btn btn-outline-secondary float-end">"<%= @return.updated_at %>"</a></p>
+        <p class="mt-auto"><a href="#" class="btn btn-success">OK</a>  <a href="#" class="btn btn-warning float-end">OUPS</a></p>
+      </div>
+  </div>
+</div>
+
     <div class="mt-4">
     <% if current_user.warehouse_operator? %>
         <%= link_to 'Back to returns', returns_path, class: 'btn btn-secondary' %>
@@ -25,11 +20,4 @@
     <%= link_to 'Back to orders', new_return_path, class: 'btn btn-secondary' %>
     <% end %>
     </div>
-
-
-<% @return.items.each do |item| %>
-  <%= image_tag item.photo if item.photo.attached? %>
-  <p><%= item.name %></p>
-<% end %>
-
 

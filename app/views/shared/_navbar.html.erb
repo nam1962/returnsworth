@@ -1,5 +1,5 @@
 <div class="navbar navbar-fixed-bottom navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid navbar-width-100">
+  <%# <div class="container-fluid navbar-width-100"> %>
     <%= link_to "#", class: "navbar-brand" do %>
       <%= image_tag "logobis.png" %>
       <span class="brand-font"><%= "Returns Worth" %></span>
@@ -10,9 +10,10 @@
       <% if user_signed_in? && current_user.photo.attached? %>
         <%#= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu"%>
       <% else %>
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+            <%= image_tag "https://www.nicepng.com/png/detail/804-8049853_med-boukrima-specialist-webmaster-php-e-commerce-web.png", class: "avatar", alt: "dropdown menu" %>
       <% end %>
       </a>
+
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
