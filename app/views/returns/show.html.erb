@@ -2,7 +2,10 @@
   <h1>Return Details</h1>
 
   <div class="card">
-    <img class="xcard-img-top" src="..." alt="Card image cap">
+    <% @return.items.each do |item| %>
+      <%= image_tag(item.photo, :class => "xcard-img-top") if item.photo.attached?%>
+      <p><%= item.name %></p>
+    <% end %>
     <p>ID: <%= @return.id %></p>
       <div class="card-body">
         <p><a href="#" class="btn btn-success">Created at:</a>  <a href="#" class="btn btn-outline-secondary float-end">"<%= @return.created_at %>"</a></p>
@@ -20,4 +23,3 @@
     <%= link_to 'Back to orders', new_return_path, class: 'btn btn-secondary' %>
     <% end %>
     </div>
-
