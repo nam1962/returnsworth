@@ -38,7 +38,8 @@ celine = User.create!(
   password: "123456",
   role: "client_service_officer",
   first_name: "Celine",
-  last_name: "CSO"
+  last_name: "CSO",
+  admin: true
 )
 celine.save!
 file_celine = URI.open("https://avatars.githubusercontent.com/u/121505176?v=4")
