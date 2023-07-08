@@ -2,18 +2,24 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Return details</title>
+    <title>Summary</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="mb-4">Return details</h1>
+    <h1 class="mb-4">Summary</h1>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Return ID : <%= @return.id %></h5>
+            <h5 class="card-title">Return ID : <%= @return.order.order_number %></h5>
             <p class="card-text">
+                <strong>nb Items :</strong> <%= @return.order.items.count%><br>
+                <strong>Restock :</strong> <%= @return.restock?%><br>
+                <strong>Order name</strong> <%= @return.order.order_number%><br>
+                <strong>Status:</strong> <%= @return.status %><br>
+                <strong>State</strong><%= @return.state %><br>
                 <strong>Date and time of creation :</strong> <%= @return.created_at.strftime("%d/%m/%Y %H:%M") %><br>
-                <strong>Last update:</strong> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
+                <strong>Last update:</strong> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %><br>
+
             </p>
         </div>
     </div>
@@ -25,11 +31,3 @@
     <%= link_to 'Back to orders', new_return_path, class: 'btn btn-secondary' %>
     <% end %>
     </div>
-
-
-<% @return.items.each do |item| %>
-  <%= image_tag item.photo if item.photo.attached? %>
-  <p><%= item.name %></p>
-<% end %>
-
-
