@@ -10,7 +10,7 @@
       <div class="card-body">
         <p class="card-text">
           <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 text-center">
               <strong>Order name</strong> <span class="mr-2"></span><i class="fa-solid fa-forward mx-2"></i> <%= @return.order.order_number %>
               <br>
               <strong>Status</strong> <span class="mr-2"></span><i class="fa-solid fa-forward mx-2"></i> <%= @return.status %>
@@ -19,7 +19,7 @@
               <br>
               <strong>Last update</strong> <span class="mr-4"></span><i class="fa-solid fa-forward mx-2"></i> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 text-center">
               <% @return.items.each do |item| %><br>
                   <i class="fa-solid fa-passport green"></i> <span class="mx-2"></span> <%= item.name %>
                   <br>
@@ -35,8 +35,8 @@
             </div>
           </div>
           <div class="row mt-3">
-            <div class="col-md-12">
-              <i class="fa-solid fa-pen-to-square"></i> <span class="mx-2"></span> <strong>Comment</strong> <span class="mx-2"></span><i class="fa-solid fa-forward"> </i> <span class="mx-2"></span> <%= @return.comment %>
+            <div class="col-md-12 text-center">
+              <i class="fa-solid fa-pen-to-square <%= @return.comment == 'OK' ? 'green' : 'purple' %> "></i> <span class="mx-2"></span> <strong><em>Comment</em></strong> <span class="mx-2"></span><i class="fa-solid fa-forward"> </i> <span class="mx-2"></span> <%= @return.comment %>
             </div>
           </div>
         </p>
