@@ -23,20 +23,20 @@
               <% @return.items.each do |item| %><br>
                   <i class="fa-solid fa-passport green"></i> <span class="mx-2"></span> <%= item.name %>
                   <br>
-                  <i class="fa-solid fa-box fa-beat-fade <%= item.produit? ? "green" : "purple" %>"></i> <span class="mx-2"></span> <%= item.produit? ? "OK" : "Defective" %>
+                  <i class="fa-solid fa-box fa-beat-fade" style="color: <%= item.produit? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.produit? ? "OK" : "Defective" %>
                   <br>
-                  <i class="fa-solid fa-gift fa-beat-fade <%= item.emballage? ? "green" : "purple" %>"></i> <span class="mx-2"></span> <%= item.emballage? ? "OK" : "Defective" %>
+                  <i class="fa-solid fa-gift fa-beat-fade" style="color: <%= item.emballage? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.emballage? ? "OK" : "Defective" %>
                   <br>
-                  <i class="fa-solid fa-recycle fa-beat-fade <%= item.restock? ? "green" : "purple" %>"></i> <span class="mx-2"></span> <%= item.restock? ? "Restored" : "Defective" %>
+                  <i class="fa-solid fa-recycle fa-beat-fade" style="color: <%= item.restock? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.restock? ? "Restored" : "Defective" %>
                   <br>
-                  <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade <%= item.additional_cost? ? "green" : "purple" %>"></i> <span class="mx-2"></span> <%= item.additional_cost %>€
+                  <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade" style="color: <%= item.additional_cost? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.additional_cost %>€
                   <br>
               <% end %>
             </div>
           </div>
           <div class="row mt-3">
             <div class="col-md-12 text-center">
-              <i class="fa-solid fa-pen-to-square <%= @return.comment == 'OK' ? 'green' : 'purple' %> "></i> <span class="mx-2"></span> <strong><em>Comment</em></strong> <span class="mx-2"></span><i class="fa-solid fa-forward"> </i> <span class="mx-2"></span> <%= @return.comment %>
+              <i class="fa-solid fa-pen-to-square" style="color: <%= @return.comment == 'OK' ? 'green' : 'purple' %>;"></i> <span class="mx-2"></span> <strong><em>Comment</em></strong> <span class="mx-2"></span><i class="fa-solid fa-forward"> </i> <span class="mx-2"></span> <%= @return.comment %>
             </div>
           </div>
         </p>
