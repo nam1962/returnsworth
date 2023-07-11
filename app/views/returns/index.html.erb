@@ -24,13 +24,13 @@
           <h3 class="card-text">Status: <%= return_record.status %></h3>
           <h3 class="card-text">State: <%= return_record.state %></h3>
         </div>
-        <div class="card-footer d-flex justify-content-center">
-          <%= link_to 'Show', return_record, class: 'btn btn-success btn-xs btn-lg', style: "border-radius: 10px; padding: 18px 30px;" %>
-          <% if current_user.warehouse_operator? %>
-           <%= link_to 'Edit', edit_return_path(return_record), class: "btn btn-lg btn-warning btn-xs", style: "border-radius: 10px; margin-left: 100px; padding: 18px 35px;"  %>
 
+        <div class="card-body d-flex justify-content-center">
+          <%= link_to 'Show', return_record, class: 'btn btn-warning btn-xs', style: "border-radius: 50px; margin-right: 10px; margin-left: 10px;" %>
+          <% if current_user.warehouse_operator? %>
+            <%= link_to 'Edit', edit_return_path(return_record), class: 'btn btn-success btn-xs', style: "border-radius: 25px; margin-right: 10px; margin-left: 10px;"  %>
           <% end %>
-        </div>
+       </div>
       </div>
     </div>
   <% end %>
