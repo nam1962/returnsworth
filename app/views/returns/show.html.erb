@@ -11,13 +11,13 @@
         <p class="card-text">
           <div class="row">
             <div class="col-12 col-md-6">
-               <strong>Order name</strong> <%= @return.order.order_number %>
+              <strong>Order name</strong> <i class="fa-solid fa-forward"> </i> <%= @return.order.order_number %>
               <br>
-              <strong>Status</strong> <%= @return.status %>
+              <strong>Status</strong> <i class="fa-solid fa-forward"> </i> <%= @return.status %>
               <br>
-              <strong>nb Items</strong> <%= @return.order.items.count %>
+              <strong>nb Items</strong> <i class="fa-solid fa-forward"> </i> <%= @return.order.items.count %>
               <br>
-              <strong>Last update</strong> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
+              <strong>Last update</strong> <i class="fa-solid fa-forward"> </i> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
             </div>
             <div class="col-12 col-md-6">
               <% @return.items.each do |item| %><br>
@@ -36,7 +36,7 @@
           </div>
           <div class="row mt-3">
             <div class="col-md-12">
-              <i class="fa-solid fa-pen-to-square"></i>  <strong>Comment:</strong> <%= @return.comment %>
+              <i class="fa-solid fa-pen-to-square"></i>  <strong>Comment</strong> <i class="fa-solid fa-forward"> </i> <%= @return.comment %>
             </div>
           </div>
         </p>
