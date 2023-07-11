@@ -55,7 +55,7 @@ class ReturnsController < ApplicationController
 
   def return_params
 
-    params.require(:return).permit(:warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :exception, order_attributes: [ items_attributes: [:produit, :emballage, :additional_cost, :restock, :photo]])
+    params.require(:return).permit(:warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :order_id, :exception, order_attributes: [ items_attributes: [:produit, :emballage, :additional_cost, :restock, :photo]])
 
   end
 
