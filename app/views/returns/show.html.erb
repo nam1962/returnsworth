@@ -3,7 +3,7 @@
     <h1 class="mb-4 align-self-start">Let's recap !</h1>
     <div class="card">
       <div class="card-header">
-        <img class="xcard-img-top" src="..." alt="Card image cap">
+         <%= image_tag(@return.items.first.photo, :class => "xcard-img-top") if @return.items.first.photo.attached?%>
       </div>
         <div class="mt-4 d-flex justify-content-center" class="card-title" >Return ID : <%= @return.id %></div>
       </div>
@@ -30,8 +30,6 @@
                   <i class="fa-solid fa-recycle fa-beat-fade" style="color: <%= item.restock? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.restock? ? "Restored" : "Defective" %>
                   <br>
                   <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade" style="color: <%= item.additional_cost? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.additional_cost %>€
-                  <br>
-                  <%= image_tag(item.photo, :class => "xcard-img-top") if item.photo.attached?%>
                   <br>
               <% end %>
             </div>
