@@ -24,7 +24,6 @@
           <h3 class="card-text">Status: <%= return_record.status %></h3>
           <h3 class="card-text">State: <%= return_record.state %></h3>
         </div>
-
         <div class="card-body d-flex justify-content-center">
           <%= link_to 'Show', return_record, class: 'btn btn-warning btn-xs', style: "border-radius: 50px; margin-right: 10px; margin-left: 10px;" %>
           <% if current_user.warehouse_operator? %>

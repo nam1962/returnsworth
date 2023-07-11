@@ -15,16 +15,14 @@
             <% i = 0 %>
             <%= f.simple_fields_for :order do |order| %>
               <%= order.simple_fields_for :items do |item_form| %>
-
-                <div id="item<%= i %>" class= "d-none" data-controller="additional-cost" >
-                  <%= item_form.input :name %>
-                  <%= item_form.input :produit, input_html: { data: { additional_cost_target: "produit", action: "change->additional-cost#editAdditionalCost1"} } %>
-                  <%= item_form.input :emballage,input_html: { data: { additional_cost_target: "emballage", action: "change->additional-cost#editAdditionalCost2"}} %>
-                  <%= item_form.input :additional_cost, input_html: { data: { additional_cost_target: "additionalCost"}, value: 0 }, readonly: true %>
+                <div id="item<%= i %>" class= "d-none" data-controller="additional-cost" style="text-align:center;" >
+                  <%= item_form.object.name %>
+                  <%= item_form.input :produit, item_wrapper_class: 'tag-item', input_html: { class: "tag-selector", data: { additional_cost_target: "produit", action: "change->additional-cost#editAdditionalCost1"} }, style: "20px; padding: 30px 90px;" %>
+                  <%= item_form.input :emballage , item_wrapper_class: 'tag-item', input_html: { class: "tag-selector",data: { additional_cost_target: "emballage", action: "change->additional-cost#editAdditionalCost2"}} %>
+                  <%= item_form.input :additional_cost, input_html: { class: "form-control", data: { additional_cost_target: "additionalCost"}, value: 0 }, readonly: true, wrapper_html: { class: 'form-group' }, style: "margin:20px auto; display:block; width:250px;" %>
+                  <%= item_form.input :restock, as: :boolean, input_html: { class: "toggle" } %>
                   <%= item_form.input :photo, as: :file, input_html:{accept: "image/*", capture: "environment"} %>
-                  <%= item_form.input :restock, as: :radio_buttons %>
-                  <div style="text-align:center;" class="btn btn-lg btn-warning"  data-action="click->edit#showDiv2"> Next →</div>
-
+                  <div style="text-align:center; border-radius: 10px; margin-left: 20px; padding: 15px 115px;" class="btn btn-lg btn-warning" data-action="click->edit#showDiv2"> Next →</div>
                 </div>
                 <% i += 1 %>
               <% end %>
