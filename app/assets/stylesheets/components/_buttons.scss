@@ -1,4 +1,4 @@
-// boutons violets class="btn btn-lg btn-warning"
+// boutons violets longs class="btn btn-lg btn-warning"
 .btn-warning {
   background-color: rgba(103, 65, 254, 1)!important;
   border-radius: 20px!important;
@@ -18,7 +18,7 @@
 }
 
 
-//boutons blancs class="btn btn-lg btn-secondary"
+//boutons blancs longs class="btn btn-lg btn-secondary"
 .btn-outline-secondary {
   border-radius: 20px!important;
   text-align: center;
@@ -35,7 +35,7 @@
   outline: 2px solid rgba(140, 137, 137, 1);
 }
 
-//boutons verts class="btn btn-success btn-sm"
+//boutons verts moyens class="btn btn-success btn-sm"
 .btn-success {
   background-color: rgba(204, 242, 5, 1);
   border-radius: 20px!important;
@@ -53,6 +53,19 @@
 .btn-dark:hover {
   outline: 2px solid rgba(169, 170, 163, 1);
 }
+
+// boutons violets moyens class="btn btn-warning btn-sm"
+.btn-warning {
+  background-color: rgba(103, 65, 254, 1)!important;
+  border-radius: 15px!important;
+  color: white;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  text-decoration: none;
+  text-justify: center;
+ }
+
 // boutons return verts class="btn btn-success btn-xs"
 .btn-success {
   background-color: rgba(204, 242, 5, 1);
