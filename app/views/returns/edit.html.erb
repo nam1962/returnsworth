@@ -20,6 +20,7 @@
                   <%= item_form.input :produit, input_html: { data: { additional_cost_target: "produit", action: "change->additional-cost#editAdditionalCost1"} } %>
                   <%= item_form.input :emballage,input_html: { data: { additional_cost_target: "emballage", action: "change->additional-cost#editAdditionalCost2"}} %>
                   <%= item_form.input :additional_cost, input_html: { data: { additional_cost_target: "additionalCost"}, value: 0 }, readonly: true %>
+                  <%= item_form.input :photo, as: :file, input_html:{accept: "image/*", capture: "environment"} %>
                   <%= item_form.input :restock, as: :radio_buttons %>
                   <div style="text-align:center;" class="btn btn-lg btn-warning"  data-action="click->edit#showDiv2"> Next →</div>
                 </div>
