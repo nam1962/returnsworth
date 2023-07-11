@@ -4,17 +4,18 @@
       <div class="card shadow-lg">
         <div class="card-body">
           <%= simple_form_for(@return, local: true, data:{controller: "edit"} ) do |f| %>
-            <h1 style="text-align:center;">Order number : <%= f.object.order.order_number %></h1>
-            <div data-edit-target="div1" class="d-block text-center"> <!-- Ajoute le text-center pour centrer les boutons -->
+            <h1 style="text-align:center;"> Order number : <%= f.object.order.order_number %></h1> <br>
+            <div data-edit-target="div1" class="d-block text-center">
               <div class="button-wrapper" style="margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-                <%= link_to 'All good', returns_path, class: "btn btn-success", style: "font-size:20px; padding:15px 30px; width:200px;" %>
-                <div class="btn btn-warning" data-action="click->edit#showDiv1" style="font-size:20px; padding:15px 30px; width:200px;"> Issue </div>
+                <%= link_to 'All good 👍', logistics_path, class: "btn btn-success", style: "font-size:30px; padding:50px 60px; width:250px; border-radius: 50px;" %>
+                <div class="btn btn-warning" data-action="click->edit#showDiv1" style="font-size:30px; padding:50px 60px; width:250px; border-radius: 50px;"> Issue <br> ☠️ </div>
               </div>
             </div>
             <%# raise %>
             <% i = 0 %>
             <%= f.simple_fields_for :order do |order| %>
               <%= order.simple_fields_for :items do |item_form| %>
+
                 <div id="item<%= i %>" class= "d-none" data-controller="additional-cost" >
                   <%= item_form.input :name %>
                   <%= item_form.input :produit, input_html: { data: { additional_cost_target: "produit", action: "change->additional-cost#editAdditionalCost1"} } %>
@@ -23,6 +24,7 @@
                   <%= item_form.input :photo, as: :file, input_html:{accept: "image/*", capture: "environment"} %>
                   <%= item_form.input :restock, as: :radio_buttons %>
                   <div style="text-align:center;" class="btn btn-lg btn-warning"  data-action="click->edit#showDiv2"> Next →</div>
+
                 </div>
                 <% i += 1 %>
               <% end %>
@@ -30,7 +32,7 @@
             <% end %>
             <div data-edit-target="divFin" class="d-none">
               <%= f.input :comment, as: :text, input_html: { rows: 4, class: 'form-control' } %>
-              <%= f.submit "Update Return", class: "btn btn-lg btn-warning" %>
+              <%= f.submit "Update Return", class: "btn btn-lg btn-warning", style:"text-align:center; border-radius: 10px; margin-left: 20px; padding: 15px 80px;" %>
             </div>
           <% end %>
         </div>
