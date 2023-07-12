@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-6 my-5">
-      <div class="card shadow-lg">
+      <div class="card shadow-lg h-100">
         <div class="card-body">
           <%= simple_form_for(@return, local: true, data:{controller: "edit"} ) do |f| %>
             <h1 style="text-align:center;"> Order number : <%= f.object.order.order_number %></h1> <br>
