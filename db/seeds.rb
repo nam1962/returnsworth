@@ -37,7 +37,7 @@ celine = User.create!(
   email: "celine@lewagon.com",
   password: "123456",
   role: "client_service_officer",
-  first_name: "Celine",
+  first_name: "Céline",
   last_name: "CSO",
   admin: true
 )

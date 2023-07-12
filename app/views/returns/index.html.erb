@@ -6,8 +6,7 @@
 
 </head>
 <body>
-<h1 style="color: rgba(103, 65, 254, 1); font-size: 2em;"><strong>Hi Amaury!</strong></h1>
-
+  <h1 style="color: rgba(103, 65, 254, 1); font-size: 2em;"><strong>Hi <%= current_user.first_name %>!</strong></h1>
 
 <%= form_with url: returns_path, method: :get, class: "d-flex justify-content-center mt-4" do %>
 <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 250px; font-size: 18px; padding: 10px; border-radius: 15px;", placeholder: "Find an order" %>
