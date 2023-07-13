@@ -82,7 +82,7 @@ end
 colors = ["black", "red", "blue", "green", "yellow", "orange", "purple"]
 
 orders.each do |order|
-  rand(1..4).times do
+  rand(1..2).times do
     Item.create!(
       name: item_name + " " + colors.sample,
       order: order,
