@@ -1,6 +1,10 @@
 <div class="container mt-5 align-items-center justify-content-center" style="height: 100vh;">
   <div class="align-items-start">
-    <h1 class="mb-4 align-self-start">Let's recap !</h1>
+    <% if current_user.role == "client_service_officer" %>
+      <h1 class="mb-4 align-self-start">Congrats, your return is created !</h1>
+    <% else %>
+      <h1 class="mb-4 align-self-start">Let's recap !</h1>
+    <% end %>
     <div class="card">
       <div class="card-header">
          <%= image_tag(@return.items.first.photo, :class => "xcard-img-top") if @return.items.first.photo.attached?%>
@@ -22,23 +26,29 @@
             <div class="col-12 col-md-6 text-center">
               <% @return.items.each do |item| %><br>
                   <i class="fa-solid fa-passport green"></i> <span class="mx-2"></span> <%= item.name %>
-                  <br>
-                  <i class="fa-solid fa-box fa-beat-fade" style="color: <%= item.produit? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.produit? ? "OK" : "Defective" %>
-                  <br>
-                  <i class="fa-solid fa-gift fa-beat-fade" style="color: <%= item.emballage? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.emballage? ? "OK" : "Defective" %>
-                  <br>
-                  <i class="fa-solid fa-recycle fa-beat-fade" style="color: <%= item.restock? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.restock? ? "Restored" : "Defective" %>
-                  <br>
-                  <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade" style="color: <%= item.additional_cost? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.additional_cost %>€
-                  <br>
+                  <% if current_user.role != "client_service_officer" && @return.status != "completed" %>
+                    <br>
+                      <i class="fa-solid fa-box fa-beat-fade" style="color: <%= item.produit? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.produit? ? "OK" : "Defective" %>
+                      <br>
+                      <i class="fa-solid fa-gift fa-beat-fade" style="color: <%= item.emballage? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.emballage? ? "OK" : "Defective" %>
+                      <br>
+                      <i class="fa-solid fa-recycle fa-beat-fade" style="color: <%= item.restock? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.restock? ? "Restored" : "Defective" %>
+                      <br>
+                      <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade" style="color: <%= item.additional_cost? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.additional_cost %>€
+                      <br>
+                  <% else %>
+                    <%= image_tag "qr_codes/return-#{ @return.id }" %>
+                  <% end %>
               <% end %>
             </div>
           </div>
-          <div class="row mt-3">
-            <div class="col-md-12 text-center">
-              <i class="fa-solid fa-pen-to-square" style="color: <%= @return.comment == 'OK' ? 'green' : 'purple' %>;"></i> <span class="mx-2"></span> <strong><em>Comment</em></strong> <span class="mx-2"></span><i class="fa-solid fa-forward"> </i> <span class="mx-2"></span> <%= @return.comment %>
+          <% if current_user.role != "client_service_officer" && @return.status != "completed" %>
+            <div class="row mt-3">
+              <div class="col-md-12 text-center">
+                <i class="fa-solid fa-pen-to-square" style="color: <%= @return.comment == 'OK' ? 'green' : 'purple' %>;"></i> <span class="mx-2"></span> <strong><em>Comment</em></strong> <span class="mx-2"></span><i class="fa-solid fa-forward"> </i> <span class="mx-2"></span> <%= @return.comment %>
+              </div>
             </div>
-          </div>
+          <% end %>
         </p>
       </div>
     </div>

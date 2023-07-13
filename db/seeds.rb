@@ -14,7 +14,7 @@ Order.destroy_all
 User.destroy_all
 
 
-Dir.glob(Rails.root.join('public', 'qr_codes', '*')).each do |filename|
+Dir.glob(Rails.root.join('app', 'assets', 'images', 'qr_codes', '*')).each do |filename|
   File.delete(filename)
 end
 
@@ -86,21 +86,20 @@ orders.each do |order|
     Item.create!(
       name: item_name + " " + colors.sample,
       order: order,
-      restock: [true, false].sample,
-      produit: [true, false].sample,
-      emballage: [true, false].sample,
-      additional_cost: rand(10..50),
+      restock: false,
+      produit: false,
+      emballage: false,
+      additional_cost: nil,
     )
   end
 end
 
 # Returns:
-20.times do |i|
+2.times do |i|
   Return.create!(
-    status: ['pending', 'completed'].sample, # Random status
-    state: ['processed', 'unprocessed'].sample, # Random state
-    comment: 'OK',
-    warehouse_operator_id: operators.sample.id,
+    status: 'completed',
+    comment: " ",
+    warehouse_operator_id: amaury.id,
     client_service_officer_id: officers.sample.id,
     order: orders.sample
   )
