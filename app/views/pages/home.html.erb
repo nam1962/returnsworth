@@ -11,7 +11,7 @@
         <% if current_user.role == "warehouse_operator" %>
           <a href="/logistics" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Start Scanning</a>
         <% else %>
-          <a href="/returns" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Create a Return</a>
+          <a href="/returns/new" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Create a Return</a>
         <% end %>
       <% else %>
         <div class="text-center">
