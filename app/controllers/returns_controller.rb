@@ -17,10 +17,13 @@ class ReturnsController < ApplicationController
     if params[:query].present?
       sql_query = "order_number ILIKE :query"
       @orders = Order.where(sql_query, query: "%#{params[:query]}%")
+      flash[:alert] = "No orders found" if @orders.empty?
     else
       @orders = Order.all
+      flash[:alert] = "No orders exist" if @orders.empty?
     end
   end
+
 
   def create
     @return = Return.new(return_params)
