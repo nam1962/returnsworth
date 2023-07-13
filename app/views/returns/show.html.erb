@@ -37,7 +37,7 @@
                       <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade" style="color: <%= item.additional_cost? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.additional_cost %>€
                       <br>
                   <% else %>
-                    <%= image_tag "qr_codes/return-#{ @return.id }" %>
+                    <%= image_tag "qr_codes/return-#{ @return.id }.png" %>
                   <% end %>
               <% end %>
             </div>
