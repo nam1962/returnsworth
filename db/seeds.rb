@@ -67,9 +67,10 @@ operators = [amaury] + 5.times.map do |i|
 end
 
 # Orders:
-customer_first_names = ["Alain", "Annie", "Benoît", "Léontine", "Clara", "Ella", "Félix", "Guy", "Alfred", "Pacôme"]
-customer_last_names = ["Bécile", "Versaire", "Magimel", "Honnête", "Covayre", "Michu", "Cité", "Tarre", "Poste", "Macheproh"]
-
+customer_first_names = ["Anna", "Cécile", "Camila", "Aurora", "Nadia", "Charlotte", "Camille", "Jeanne", "Justine", "Wendy"]
+customer_last_names = ["Dupont", "Durand", "Dubois", "Petit", "Lambert", "Martin", "Fontaine", "Vasseur", "Dupuis", "Royer"]
+item_names = ["Bérénice", "Albertine", "Judith", "Juliette", "Sandra", "Isabella", "Charlotte", "Scarlett", "Naomi", "Natalie", "Kate", "Megan", "Emma", "Charlize", "Keira"]
+item_name = item_names.sample
 orders = (1..40).map do |i|
   customer_first_name = customer_first_names.sample
   customer_last_name = customer_last_names.sample
@@ -78,12 +79,12 @@ orders = (1..40).map do |i|
 end
 
 # Items:
-colors = ["noir", "rouge", "bleu", "vert", "jaune", "orange", "violet"]
+colors = ["black", "red", "blue", "green", "yellow", "orange", "purple"]
 
 orders.each do |order|
   rand(1..4).times do
     Item.create!(
-      name: "crayon " + colors.sample,
+      name: item_name + " " + colors.sample,
       order: order,
       restock: [true, false].sample,
       produit: [true, false].sample,
