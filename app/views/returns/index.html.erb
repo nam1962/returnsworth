@@ -36,9 +36,9 @@
     </div>
 
       <% if current_user.client_service_officer? %>
-        <% <div class="d-flex justify-content-center"> %>
+        <div class="d-flex justify-content-center">
           <%= link_to 'New Return', new_return_path, class: 'btn btn-primary mt-4' %>
-        <% </div> %>
+        </div>
       <% end %>
   </body>
 </html>
