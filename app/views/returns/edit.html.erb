@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-6 my-5">
-      <div class="card shadow-lg">
+      <div class="card shadow-lg h-100">
         <div class="card-body">
           <%= simple_form_for(@return, local: true, data:{controller: "edit"} ) do |f| %>
             <h1 style="text-align:center;"> Order number : <%= f.object.order.order_number %></h1> <br>
@@ -22,7 +22,7 @@
                   <%= item_form.input :additional_cost, input_html: { class: "form-control", data: { additional_cost_target: "additionalCost"}, value: 0 }, readonly: true, wrapper_html: { class: 'form-group' }, style: "margin:20px auto; display:block; width:250px;" %>
                   <%= item_form.input :restock, as: :boolean, input_html: { class: "toggle" } %>
                   <%= item_form.input :photo, as: :file, input_html:{accept: "image/*", capture: "environment"} %>
-                  <div style="text-align:center; border-radius: 10px; margin-left: 20px; padding: 15px 115px;" class="btn btn-lg btn-warning" data-action="click->edit#showDiv2"> Next →</div>
+                  <div style="text-align:center; border-radius: 10px; padding: 15px 115px;" class="btn btn-lg btn-warning" data-action="click->edit#showDiv2"> Next →</div>
                 </div>
                 <% i += 1 %>
               <% end %>
@@ -30,7 +30,7 @@
             <% end %>
             <div data-edit-target="divFin" class="d-none">
               <%= f.input :comment, as: :text, input_html: { rows: 4, class: 'form-control' } %>
-              <%= f.submit "Update Return", class: "btn btn-lg btn-warning", style:"text-align:center; border-radius: 10px; margin-left: 20px; padding: 15px 80px;" %>
+              <%= f.submit "Update Return", class: "btn btn-lg btn-warning", style:"text-align:center; border-radius: 10px; padding: 15px 80px;" %>
             </div>
           <% end %>
         </div>

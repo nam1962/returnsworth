@@ -1,42 +1,45 @@
 <div class="content-wrapper">
-  <div class="banner">
-      <%= video_tag "video_homepage.mp4", autoplay: true, loop: true, controls: false, mute: true %>
+  <div class="banner" style="position: relative;">
+      <%= video_tag "video_homepage.mp4", autoplay: true, loop: true, controls: false, mute: true, class: "mx-auto d-block" %>
       <h1 class="title">Eleanor</h1>
-      <p class="slogan">Your trusted logistics partner : Eleanor Returnsworth helps coordinate e-commerce client service officers with warehouse operators to monitor product returns efficiently.</p>
+      <div class="slogan" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <p>Your trusted logistics partner : Eleanor Returnsworth helps coordinate e-commerce client service officers with warehouse operators to monitor product returns efficiently.</p>
+      </div>
   </div>
   <div class="row">
       <% if user_signed_in? %>
         <% if current_user.role == "warehouse_operator" %>
           <a href="/logistics" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Start Scanning</a>
         <% else %>
-          <a href="/returns" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Create a Return</a>
+          <a href="/returns/new" type="button" class="btn-lg btn-block mx-auto w-50 py-8 bg-success p-6">Create a Return</a>
         <% end %>
       <% else %>
-        <%= link_to "Sign Up", new_user_registration_path %>
-        <%= link_to "Sign In", new_user_session_path %>
+        <div class="text-center">
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-sm", style: "font-size:30px; padding:25px 20px; width:150px; border-radius: 50px; margin-top:5px;" %>
+          <%= link_to "Sign In", new_user_session_path, class: "btn btn-warning btn-sm ml-2", style: "font-size:30px; padding:25px 20px; width:150px; border-radius: 50px; margin-top:5px;" %>
+        </div>
       <% end %>
   </div>
+
+  <script>
+    var textWrapper = document.querySelector('.slogan');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    anime.timeline({ loop: true })
+      .add({
+        targets: '.slogan .letter',
+        opacity: [0, 1],
+        easing: "easeInOutQuad",
+        duration: 1575,  // Decreased duration by 30%
+        delay: (el, i) => 105 * (i + 1) // Decreased delay by 30%
+      }).add({
+        targets: '.slogan',
+        opacity: 0,
+        duration: 700,  // Decreased duration by 30%
+        easing: "easeOutExpo",
+        delay: 700, // Decreased delay by 30%
+        complete: function() {
+          anime({ duration: 7000 }).finished; // 7-second pause at the end
+        }
+      });
+  </script>
 </div>
-  <%# else si le current_user == wharehouse alors montre moi un bouton "créer un retour"%>
-  <%# else "false" alors montre moi deux boutons : sign up et sign in %>
-
-
-<script>
-  var textWrapper = document.querySelector('.slogan');
-  textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-  anime.timeline({loop: true})
-    .add({
-      targets: '.slogan .letter',
-      opacity: [0, 1],
-      easing: "easeInOutQuad",
-      duration: 2250,
-      delay: (el, i) => 150 * (i + 1)
-    }).add({
-      targets: '.slogan',
-      opacity: 0,
-      duration: 1000,
-      easing: "easeOutExpo",
-      delay: 1000
-    });
-</script>

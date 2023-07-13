@@ -1,10 +1,10 @@
 <h1 style="color: rgba(103, 65, 254, 1);">Hi Céline!</h1>
 
 <%= form_with url: new_return_path, method: :get, class: "d-flex justify-content-center mt-4" do %>
-  <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 200px;", placeholder: "Find an order" %>
-  <%= submit_tag "Search", name: "", class: "btn btn-primary ml-2" %>
+  <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 400px;", placeholder: "Find an order" %>
+        <%= submit_tag "Search", name: "", class: "btn btn-success btn-xs", style: "border-radius: 10px; margin-left: 20px; padding: 15px 20px;" %>
 <% end %>
-
+<br>
 
 <% @orders.each_slice(3).with_index do |order_group, index| %>
   <div class="row">
@@ -21,10 +21,10 @@
             </div>
 
           </div>
-          <div class="card-footer d-flex justify-content-end">
+          <div class="card-footer d-flex justify-content-center">
             <%= form_with(model: Return.new, local: true) do |form| %>
               <%= form.hidden_field :order_id, value: order.id %>
-              <%= form.submit "Create Return", class: "btn btn-success btn-xs" %>
+              <%= form.submit "Create Return", class: "btn btn-success btn-xs" , style: "border-radius: 50px; " %>
             <% end %>
           </div>
         </div>

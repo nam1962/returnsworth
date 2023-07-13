@@ -5,11 +5,15 @@
   .banner {
     position:relative;
     width: 100vw;
+    max-width: 1225px; // To be centered and not wider than video
     height:85vh;
     background: video;
     background-size: cover;
     position: relative;
     background-color: black;
+    display: flex; // To be centered and not wider than video
+    align-items: center; // To be centered and not wider than video
+    margin: 0 auto; // To be centered and not wider than video
 
     video {
       position: absolute;
@@ -30,13 +34,13 @@
     }
 
     .slogan {
-      width: 100%;
+      width: 80%;
       position: absolute;
       bottom: 15%;
       font-weight: bolder;
       color: rgba(204, 242, 5, 1);
       text-align: center;
-      font-size: 30px;
+      font-size: 26px;
     }
   }
 
