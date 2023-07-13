@@ -83,7 +83,7 @@ colors = ["noir", "rouge", "bleu", "vert", "jaune", "orange", "violet"]
 orders.each do |order|
   rand(1..4).times do
     Item.create!(
-      name: "crayon " + colors.sample,
+      name: "robe " + colors.sample,
       order: order,
       restock: [true, false].sample,
       produit: [true, false].sample,

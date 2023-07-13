@@ -17,10 +17,13 @@ class ReturnsController < ApplicationController
     if params[:query].present?
       sql_query = "order_number ILIKE :query"
       @orders = Order.where(sql_query, query: "%#{params[:query]}%")
+      flash[:alert] = "No orders found" if @orders.empty?
     else
       @orders = Order.all
+      flash[:alert] = "No orders exist" if @orders.empty?
     end
   end
+
 
   def create
     @return = Return.new(return_params)
@@ -55,7 +58,7 @@ class ReturnsController < ApplicationController
 
   def return_params
 
-    params.require(:return).permit(:warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :exception, order_attributes: [ items_attributes: [:produit, :emballage, :additional_cost, :restock, :photo]])
+    params.require(:return).permit(:warehouse_operator_id, :client_service_officer_id, :status, :state, :comment, :order_id, order_attributes: [ items_attributes: [:produit, :emballage, :additional_cost, :restock, :photo]])
 
   end
 
