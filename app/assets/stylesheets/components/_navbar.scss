@@ -45,7 +45,9 @@
 }
 
 .menu-button {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   outline: 2px solid rgba(0, 0, 0, 0.2); /* Lightly outlined box effect */
   padding: 5px 10px; /* Adjust padding as needed */
   margin-left: 10px; /* Add spacing between the logo and the button */

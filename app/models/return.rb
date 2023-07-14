@@ -14,9 +14,11 @@ class Return < ApplicationRecord
   private
 
   def create_qr_code
-    qrcode = RQRCode::QRCode.new("returns/#{self.id}")
+    qr_code_url = "#{Rails.root}/returns/#{self.id}/edit"
+    qrcode = RQRCode::QRCode.new(qr_code_url)
     png = qrcode.as_png(size: 300)
-    save_qr_code_locally(png)
+    file_path = save_qr_code_locally(png)
+    file_path # Return the file path of the saved QR code
   end
 
   def save_qr_code_locally(png)
@@ -25,5 +27,7 @@ class Return < ApplicationRecord
 
     file_path = folder_path.join("return-#{id}.png")
     File.open(file_path, 'wb') { |f| f.write(png.to_s) }
+
+    file_path # Return the file path of the saved QR code
   end
 end
