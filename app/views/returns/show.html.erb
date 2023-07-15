@@ -2,61 +2,62 @@
 <div class="container align-items-center justify-content-center" style="padding-top: 0;">
   <div class="align-items-start">
     <% if current_user.role == "client_service_officer" %>
-     <h3 class="align-self-start" style="text-align:center;">Congrats, your return is created !</h3>
+     <h3 class="align-self-start" style="text-align:center; font-size: 2rem;">Congrats, your return is created !</h3>
     <% else %>
       <h1 class="mb-4 align-self-start">Let's recap !</h1>
     <% end %>
-    <div class="card">
+    <% if @return.items.first.photo.attached? %>
       <div class="card-header">
-         <%= image_tag(@return.items.first.photo, :class => "xcard-img-top") if @return.items.first.photo.attached?%>
+         <%= image_tag(@return.items.first.photo, :class => "xcard-img-top")%>
       </div>
-      <div class="mt-4 d-flex justify-content-center" class="card-title" >Return ID : <%= @return.id %></div>
+    <% end %>
       <div class="card-body">
         <h5 class="card-title"> </h5>
         <p class="card-text">
           <div class="row">
             <div class="col-12 col-md-6 text-center">
-              <strong>Order name</strong> <span class="mr-2"></span><i class="fa-solid fa-forward mx-2"></i> <%= @return.order.order_number %>
+              <div class="card-title" >Return ID : <%= @return.id %></div>
+              <strong>Order name</strong>: <%= @return.order.order_number %>
               <br>
-              <strong>Status</strong> <span class="mr-2"></span><i class="fa-solid fa-forward mx-2"></i> <%= @return.status %>
+              <% unless @return.status.nil? %>
+                <strong>Status</strong>: <%= @return.status %>
+                <br>
+              <% end %>
+              <strong>nb Items</strong>: <%= @return.order.items.count %>
               <br>
-              <strong>nb Items</strong> <span class="mr-4"></span><i class="fa-solid fa-forward mx-2"></i> <%= @return.order.items.count %>
-              <br>
-              <strong>Last update</strong> <span class="mr-4"></span><i class="fa-solid fa-forward mx-2"></i> <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
+              <strong>Last update</strong>: <%= @return.updated_at.strftime("%d/%m/%Y %H:%M") %>
             </div>
             <div class="col-12 col-md-6 text-center">
               <% @return.items.each do |item| %><br>
-                  <i class="fa-solid fa-passport green"></i> <span class="mx-2"></span> <%= item.name %>
-                  <% if current_user.role != "client_service_officer" && @return.status != "completed" %>
+                <i class="fa-solid fa-passport green"></i> <span class="mx-2"></span> <%= item.name %>
+                <% if current_user.role != "client_service_officer" && @return.status == "completed" %>
+                  <br>
+                    <i class="fa-solid fa-box fa-beat-fade" style="color: <%= item.produit? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.produit? ? "OK" : "Defective" %>
                     <br>
-                      <i class="fa-solid fa-box fa-beat-fade" style="color: <%= item.produit? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.produit? ? "OK" : "Defective" %>
-                      <br>
-                      <i class="fa-solid fa-gift fa-beat-fade" style="color: <%= item.emballage? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.emballage? ? "OK" : "Defective" %>
-                      <br>
-                      <i class="fa-solid fa-recycle fa-beat-fade" style="color: <%= item.restock? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.restock? ? "Restored" : "Defective" %>
-                      <br>
-                      <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade" style="color: <%= item.additional_cost? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.additional_cost %>€
-                      <br>
-                  <% else %>
-                    <%= image_tag "qr_codes/return-#{ @return.id }.png" %>
-                  <% end %>
+                    <i class="fa-solid fa-gift fa-beat-fade" style="color: <%= item.emballage? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.emballage? ? "OK" : "Defective" %>
+                    <br>
+                    <i class="fa-solid fa-recycle fa-beat-fade" style="color: <%= item.restock? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.restock? ? "Restored" : "Defective" %>
+                    <br>
+                    <i class="fa-sharp fa-solid fa-euro-sign fa-beat-fade" style="color: <%= item.additional_cost? ? "green" : "purple" %>;"></i> <span class="mx-2"></span> <%= item.additional_cost %>€
+                    <br>
+                <% else %>
+                  <%= image_tag "qr_codes/return-#{ @return.id }.png" %>
+                <% end %>
               <% end %>
-              </div>
-              <div class="d-flex justify-content-center mt-3">
-
-
+            </div>
+            <div class="d-flex justify-content-center mt-3">
               <% if current_user.warehouse_operator? %>
-        <%= link_to 'Back to Returns', logistics_path, class: 'btn btn-secondary' %>
-      <% elsif current_user.client_service_officer? %>
-        <%= link_to 'Back to Orders', new_return_path, class: 'btn btn-secondary' %>
-      <% end %>
+                <%= link_to 'Back to Returns', logistics_path, class: 'btn btn-secondary' %>
+              <% elsif current_user.client_service_officer? %>
+                <%= link_to 'Back to Orders', new_return_path, class: 'btn btn-secondary' %>
+              <% end %>
             </div>
           </div>
-          <%# if current_user.role != "client_service_officer" && @return.status != "completed" %>
-            <%#<div class="row mt-3">
+          <% if current_user.role != "client_service_officer" && @return.status != "completed" %>
+            <div class="row mt-3">
               <div class="col-md-12 text-center">
-                <i class="fa-solid fa-pen-to-square" style="color: <%= @return.comment == 'OK' ? 'green' : 'purple' %><%#;"></i> <span class="mx-2"></span> <strong><em>Comment</em></strong> <span class="mx-2"></span><i class="fa-solid fa-forward"> </i> <span class="mx-2"></span> <%= @return.comment %>
-              <%#</div>
+                <i class="fa-solid fa-pen-to-square" style="color: <%= @return.comment == 'OK' ? 'green' : 'purple' %>;"></i> <span class="mx-2"></span> <strong><em>Comment</em></strong> <span class="mx-2"></span><i class="fa-solid fa-forward"> </i> <span class="mx-2"></span> <%= @return.comment %>
+              </div>
             </div>
           <% end %>
         </p>
@@ -66,6 +67,30 @@
       <div class="card-body">
         <strong>Comment:</strong> <%= @return.comment == 'OK' ? 'OK' : @return.comment %>
       <%#</div>%>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
   </div>
 </div>

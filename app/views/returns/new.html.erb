@@ -1,18 +1,19 @@
-<h1 style="color: rgba(103, 65, 254, 1);">Hi Céline!</h1>
+<h1 style="color: rgba(103, 65, 254, 1); margin-bottom: 50px;">Hi Céline!</h1>
 
-<%= form_with url: new_return_path, method: :get, class: "d-flex justify-content-center mt-4" do %>
+<%= form_with url: new_return_path, method: :get, class: "search-order d-flex justify-content-center mt-4" do %>
   <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 400px;", placeholder: "Find an order" %>
-        <%= submit_tag "Search", name: "", class: "btn btn-success btn-xs", style: "border-radius: 10px; margin-left: 20px; padding: 15px 20px;" %>
+  <%= submit_tag "Search", name: "", class: "btn btn-success btn-xs", style: "padding: 15px 20px;" %>
 <% end %>
 <br>
 
 <% @orders.each_slice(3).with_index do |order_group, index| %>
-  <div class="row">
+  <div class="div-returns row">
     <% order_group.each do |order| %>
       <div class="col-md-4 mb-4">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">Order ID: <%= order.order_number %> - <%= order.client_name %></h5>
+            <h5 class="card-title">Order: <%= order.order_number %></h5>
+            <p><%= order.client_name %></p>
 
             <div class="d-flex flex-wrap">
               <% order.items.each do |item| %>
@@ -21,10 +22,10 @@
             </div>
 
           </div>
-          <div class="card-footer d-flex justify-content-center">
+          <div class="card-footer d-flex">
             <%= form_with(model: Return.new, local: true) do |form| %>
               <%= form.hidden_field :order_id, value: order.id %>
-              <%= form.submit "Create Return", class: "btn btn-success btn-xs" , style: "border-radius: 50px; " %>
+              <%= form.submit "Create Return", class: "btn btn-success btn-xs" , style: "border-radius: 50px; font-size: 1.5rem;" %>
             <% end %>
           </div>
         </div>
