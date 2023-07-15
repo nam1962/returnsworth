@@ -57,7 +57,7 @@
               </div>
             <% end %>
           <% end %>
-          <div class="d-flex justify-content-center mt-3" style="position: absolute; bottom: 75px; left: 0;">
+          <div class="d-flex justify-content-center mt-3 mb-5" style="bottom: 75px; left: 0;">
             <% if current_user.warehouse_operator? %>
               <%= link_to 'Back to Returns', logistics_path, class: 'btn btn-lg btn-warning', style:"font-size: 22px;" %>
             <% elsif current_user.client_service_officer? %>
