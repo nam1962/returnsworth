@@ -79,12 +79,11 @@ orders = (1..40).map do |i|
 end
 
 # Items:
-colors = ["black", "red", "blue", "green", "yellow", "orange", "purple"]
 
 orders.each do |order|
-  rand(1..2).times do
+  rand(1..5).times do
     Item.create!(
-      name: item_name + " " + colors.sample,
+      name: item_name,
       order: order,
       restock: false,
       produit: false,
@@ -104,5 +103,63 @@ end
     order: orders.sample
   )
 end
+
+# à garder à la fin
+order_1 = Order.create!(
+  order_number: 2683,
+  client_name: "Marie-Line Monnerot"
+)
+
+order_2 = Order.create!(
+  order_number: 2987,
+  client_name: "Annie Versère"
+)
+
+Item.create!(
+  name: "Charlotte",
+  order: order_1,
+  restock: false,
+  produit: false,
+  emballage: false,
+  additional_cost: nil
+)
+
+Item.create!(
+  name: "Sandra",
+  order: order_1,
+  restock: false,
+  produit: false,
+  emballage: false,
+  additional_cost: nil
+)
+
+Item.create!(
+  name: "Naomi",
+  order: order_2,
+  restock: false,
+  produit: false,
+  emballage: false,
+  additional_cost: nil
+)
+
+return_1 = Return.create!(
+  comment: "",
+  warehouse_operator: amaury,
+  client_service_officer: celine,
+  order: order_1
+)
+
+return_2 = Return.create!(
+  comment: "",
+  warehouse_operator: amaury,
+  client_service_officer: celine,
+  order: order_2
+)
+
+Return.find(101).update!(id: 223316) if Return.find_by(id: 101)
+Return.find(102).update!(id: 221317) if Return.find_by(id: 102)
+
+return_1.update!(id: 101)
+return_2.update!(id: 102)
 
 puts "seed finished"

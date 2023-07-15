@@ -45,6 +45,11 @@ class ReturnsController < ApplicationController
     @return = Return.find(params[:id])
     @return.status = "completed"
     if @return.update(return_params)
+      if @return.items.pluck(:restock).uniq.length == 1
+        @return.update(restock: @return.items.pluck(:restock).uniq[0])
+      else
+        @return.update(restock: false)
+      end
       redirect_to return_path(@return), notice: 'Return was successfully updated.'
     else
       render :edit
@@ -59,7 +64,7 @@ class ReturnsController < ApplicationController
 
   def return_params
 
-    params.require(:return).permit(:warehouse_operator_id, :client_service_officer_id, :state, :comment, :order_id, :exception, order_attributes: [ items_attributes: [:produit, :emballage, :additional_cost, :restock, :photo]])
+    params.require(:return).permit(:warehouse_operator_id, :client_service_officer_id, :state, :comment, :order_id, :exception, order_attributes: [ :order_number, :client_name, items_attributes: [:name, :produit, :emballage, :additional_cost, :restock, :photo]])
 
   end
 
