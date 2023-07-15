@@ -7,7 +7,7 @@ class Return < ApplicationRecord
   has_many :items, through: :order
   accepts_nested_attributes_for :order
 
-  after_create :create_qr_code
+  after_commit :create_qr_code
 
   def first_order
     order.first
