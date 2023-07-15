@@ -3,11 +3,11 @@
 <div class="position-relative">
   <h2 class="mb-4">Scan QR code</h2>
   <div data-controller="qr-code-reader">
-    <video data-qr-code-reader-target="video" width="390" height="400" data-qr-code-path="<%= create_qr_code_return_path(@return) %>"></video>
+    <video data-qr-code-reader-target="video" width="390" height="400" data-qr-code-path=""></video>
   </div>
 
   <div class="mt-auto w-100 px-2" style="margin-bottom: 20px;">
-    <a href="<%= edit_return_path(@return) %>" class="btn btn-warning btn-sm">🤔 I don't have a QR code...</a>
+    <a href="<%#= edit_return_path(@return) %>" class="btn btn-warning btn-sm">🤔 I don't have a QR code...</a>
   </div>
 </div>
 

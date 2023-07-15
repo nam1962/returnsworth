@@ -1,4 +1,6 @@
 class Return < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   belongs_to :warehouse_operator, foreign_key: :warehouse_operator_id, class_name: "User", optional: true
   belongs_to :client_service_officer, foreign_key: :client_service_officer_id, class_name: "User"
   belongs_to :order
@@ -14,7 +16,9 @@ class Return < ApplicationRecord
   private
 
   def create_qr_code
-    qr_code_url = "#{Rails.root}/returns/#{self.id}/edit"
+    # qr_code_url = "#{Rails.root}/returns/#{self.id}/edit"
+    qr_code_url = edit_return_path(self)
+
     qrcode = RQRCode::QRCode.new(qr_code_url)
     png = qrcode.as_png(size: 300)
     file_path = save_qr_code_locally(png)
