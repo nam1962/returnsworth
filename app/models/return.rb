@@ -26,7 +26,7 @@ class Return < ApplicationRecord
   end
 
   def save_qr_code_locally(png)
-    folder_path = Rails.root.join('app', 'assets', 'images', 'qr_codes')
+    folder_path = Rails.root.join('public', 'qr_codes')
     FileUtils.mkdir_p(folder_path) unless File.directory?(folder_path)
 
     file_path = folder_path.join("return-#{id}.png")
