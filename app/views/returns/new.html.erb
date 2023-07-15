@@ -23,9 +23,11 @@
 
           </div>
           <div class="card-footer d-flex">
-            <%= form_with(model: Return.new, local: true) do |form| %>
-              <%= form.hidden_field :order_id, value: order.id %>
-              <%= form.submit "Create Return", class: "btn btn-success btn-xs" , style: "border-radius: 50px; font-size: 1.5rem;" %>
+            <% unless Return.exists?(order_id: order.id) %>
+              <%= form_with(model: Return.new, local: true) do |form| %>
+                <%= form.hidden_field :order_id, value: order.id %>
+                <%= form.submit "Create Return", class: "btn btn-success btn-xs" , style: "border-radius: 50px; font-size: 1.5rem;" %>
+              <% end %>
             <% end %>
           </div>
         </div>
