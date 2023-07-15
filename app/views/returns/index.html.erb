@@ -1,44 +1,38 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Summary</title>
+  <h1 style="color: rgba(103, 65, 254, 1); font-size: 2em;"><strong>Hi <%= current_user.first_name %>!</strong></h1>
 
-</head>
-  <body>
-      <h1 style="color: rgba(103, 65, 254, 1); font-size: 2em;"><strong>Hi <%= current_user.first_name %>!</strong></h1>
+  <%= form_with url: returns_path, method: :get, class: "search-order d-flex justify-content-center mt-4" do %>
+  <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 250px; font-size: 18px; padding: 10px;", placeholder: "Find an order" %>
+  <%= submit_tag "Search", name: "", class: "btn btn-success btn-xs", style: "padding: 15px 20px;" %>
+  <% end %>
 
-      <%= form_with url: returns_path, method: :get, class: "d-flex justify-content-center mt-4" do %>
-      <%= text_field_tag :query, params[:query], class: "form-control", style: "width: 250px; font-size: 18px; padding: 10px; border-radius: 15px;", placeholder: "Find an order" %>
-      <%= submit_tag "Search", name: "", class: "btn btn-success btn-xs", style: "border-radius: 10px; margin-left: 20px; padding: 15px 20px;" %>
-      <% end %>
-
-    <div class="row mt-4">
-      <% @returns.each do |return_record| %>
-        <div class="col-md-4 mb-4">
-          <div class="card" style="border-radius: 15px; height: 100%;">
-            <div class="card-body">
-              <h2 class="d-flex justify-content-center mt-4" class="card-title">Return N°: <%= return_record.id %></h2>
-              <h3 class="card-text">Order N°: <%= return_record.items.first.present? ? return_record.order.order_number : 'N/A' %></h3>
-              <h3 class="card-text">Status: <%= return_record.status %></h3>
-              <h3 class="d-none card-text">State: <%= return_record.state %></h3>
-                <div class="d-flex justify-content-center">
-                  <%= link_to 'Show', return_record, class: 'btn btn-warning btn-xs', style: "border-radius: 50px; margin-right: 100px; margin-left: 10px;" %>
-
-                  <% if current_user.warehouse_operator? %>
-                    <%= link_to 'Edit', edit_return_path(return_record), class: 'btn btn-success btn-xs', style: "border-radius: 25px; margin-right: 10px; margin-left: 10px;" %>
-                  <% end %>
-                </div>
-            </div>
-          </div>
+<div class="div-returns row mt-4">
+  <% @returns.each do |return_record| %>
+    <div class="col-md-4 mb-4">
+      <div class="card" style="border-radius: 15px; height: 100%;">
+        <div class="card-body">
+          <h2 class="d-flex mt-2 fs-4" class="card-title">Return N°: <%= return_record.id %></h2>
+          <p class="card-text">Order N°<%= return_record.items.first.present? ? return_record.order.order_number : 'N/A' %></p>
+          <% unless return_record.status.nil? %>
+            <p class="card-text">Status: <%= return_record.status %></p>
+          <% end %>
+          <% unless return_record.state.nil? %>
+            <p class="card-text">State: <%= return_record.state %></p>
+          <% end %>
         </div>
-      <% end %>
+        <div class="card-footer d-flex justify-content-around">
+          <%= link_to 'Show', return_record, class: 'btn btn-warning btn-xs', style: "border-radius: 50px;" %>
+
+          <% if current_user.warehouse_operator? %>
+            <%= link_to 'Edit', edit_return_path(return_record), class: 'btn btn-success btn-xs', style: "border-radius: 25px;" %>
+          <% end %>
+        </div>
+      </div>
     </div>
+  <% end %>
+</div>
 
-      <% if current_user.client_service_officer? %>
-        <div class="d-flex justify-content-center">
-          <%= link_to 'New Return', new_return_path, class: 'btn btn-primary mt-4' %>
-        </div>
-      <% end %>
-  </body>
-</html>
+<% if current_user.client_service_officer? %>
+  <div class="d-flex justify-content-center">
+    <%= link_to 'New Return', new_return_path, class: 'btn btn-primary mt-4' %>
+  </div>
+<% end %>

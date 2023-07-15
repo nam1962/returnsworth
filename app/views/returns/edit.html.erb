@@ -4,25 +4,32 @@
       <div class="card shadow-lg h-100">
         <div class="card-body">
           <%= simple_form_for(@return, local: true, data:{controller: "edit"} ) do |f| %>
-            <h1 style="text-align:center;"> Order number : <%= f.object.order.order_number %></h1> <br>
             <div data-edit-target="div1" class="d-block text-center">
               <div class="button-wrapper" style="margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-                <%= link_to 'All good 👍', logistics_path, class: "btn btn-success", style: "font-size:30px; padding:50px 60px; width:250px; border-radius: 50px;" %>
-                <div class="btn btn-warning" data-action="click->edit#showDiv1" style="font-size:30px; padding:50px 60px; width:250px; border-radius: 50px;"> Issue <br> ☠️ </div>
+                <h1> Order number : <%= f.object.order.order_number %></h1>
+                <%= link_to 'All good 👍', logistics_path, class: "btn btn-success", style: "font-size:30px; padding:20px 20px; width:250px; border-radius: 50px;" %>
+                <div class="btn btn-warning" data-action="click->edit#showDiv1" style="font-size:30px; padding:20px 20px; width:250px; border-radius: 50px;"> Issue ☠️ </div>
               </div>
             </div>
-            <%# raise %>
             <% i = 0 %>
             <%= f.simple_fields_for :order do |order| %>
+              <%= order.input :order_number, as: :hidden %>
+              <%= order.input :client_name, as: :hidden %>
               <%= order.simple_fields_for :items do |item_form| %>
-                <div id="item<%= i %>" class= "d-none" data-controller="additional-cost" style="text-align:center;" >
-                  <%= item_form.object.name %>
-                  <%= item_form.input :produit, item_wrapper_class: 'tag-item', input_html: { class: "tag-selector", data: { additional_cost_target: "produit", action: "change->additional-cost#editAdditionalCost1"} }, style: "20px; padding: 30px 90px;" %>
-                  <%= item_form.input :emballage , item_wrapper_class: 'tag-item', input_html: { class: "tag-selector",data: { additional_cost_target: "emballage", action: "change->additional-cost#editAdditionalCost2"}} %>
+                <div id="item<%= i %>" class= "d-none" data-controller="additional-cost" >
+                  <h2 style="text-align:center; margin-bottom: 30px;"><%= item_form.object.name %></h2>
+                  <%= item_form.input :name, as: :hidden %>
+                  <div class="d-flex justify-content-center">
+                    <%= item_form.input :produit, item_wrapper_class: 'tag-item', input_html: { class: "tag-selector", data: { additional_cost_target: "produit", action: "change->additional-cost#editAdditionalCost1"} }, style: "20px; padding: 30px 90px;" %>
+                    <%= item_form.input :emballage , item_wrapper_class: 'tag-item', input_html: { class: "tag-selector",data: { additional_cost_target: "emballage", action: "change->additional-cost#editAdditionalCost2"}} %>
+                  </div>
                   <%= item_form.input :additional_cost, input_html: { class: "form-control", data: { additional_cost_target: "additionalCost"}, value: 0 }, readonly: true, wrapper_html: { class: 'form-group' }, style: "margin:20px auto; display:block; width:250px;" %>
-                  <%= item_form.input :restock, as: :boolean, input_html: { class: "toggle" } %>
+                  <%= item_form.input :restock, as: :boolean, input_html: { class: "toggle", style: "font-size: 18px" } %>
                   <%= item_form.input :photo, as: :file, input_html:{accept: "image/*", capture: "environment"} %>
-                  <div style="text-align:center; border-radius: 10px; padding: 15px 115px;" class="btn btn-lg btn-warning" data-action="click->edit#showDiv2"> Next →</div>
+                  <div class="d-flex justify-content-around mt-5">
+                    <div style="text-align:center; border-radius: 10px; padding: 15px 10px; min-width: 137px;" class="btn btn-lg btn-warning"> ← Previous</div>
+                    <div style="text-align:center; border-radius: 10px; padding: 15px 10px; min-width: 137px;" class="btn btn-lg btn-warning" data-action="click->edit#showDiv2"> Next →</div>
+                  </div>
                 </div>
                 <% i += 1 %>
               <% end %>
