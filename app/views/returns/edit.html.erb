@@ -13,6 +13,8 @@
             </div>
             <% i = 0 %>
             <%= f.simple_fields_for :order do |order| %>
+              <%= order.input :order_number, as: :hidden %>
+              <%= order.input :client_name, as: :hidden %>
               <%= order.simple_fields_for :items do |item_form| %>
                 <div id="item<%= i %>" class= "d-none" data-controller="additional-cost" >
                   <h2 style="text-align:center; margin-bottom: 30px;"><%= item_form.object.name %></h2>
