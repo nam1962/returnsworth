@@ -70,7 +70,6 @@ end
 customer_first_names = ["Anna", "Cécile", "Camila", "Aurora", "Nadia", "Charlotte", "Camille", "Jeanne", "Justine", "Wendy"]
 customer_last_names = ["Dupont", "Durand", "Dubois", "Petit", "Lambert", "Martin", "Fontaine", "Vasseur", "Dupuis", "Royer"]
 item_names = ["Bérénice", "Albertine", "Judith", "Juliette", "Sandra", "Isabella", "Charlotte", "Scarlett", "Naomi", "Natalie", "Kate", "Megan", "Emma", "Charlize", "Keira"]
-item_name = item_names.sample
 orders = (1..40).map do |i|
   customer_first_name = customer_first_names.sample
   customer_last_name = customer_last_names.sample
@@ -83,7 +82,7 @@ end
 orders.each do |order|
   rand(1..5).times do
     Item.create!(
-      name: item_name,
+      name: item_names.sample,
       order: order,
       restock: false,
       produit: false,
