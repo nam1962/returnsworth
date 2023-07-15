@@ -29,6 +29,7 @@ amaury = User.create!(
   first_name: "Amaury",
   last_name: "WH"
 )
+amaury.save!
 file_amaury = URI.open("https://avatars.githubusercontent.com/u/7419235?v=4")
 amaury.photo.attach(io: file_amaury, filename: "nes.png", content_type: "image/png")
 
@@ -40,6 +41,7 @@ celine = User.create!(
   last_name: "CSO",
   admin: true
 )
+celine.save!
 file_celine = URI.open("https://avatars.githubusercontent.com/u/121505176?v=4")
 celine.photo.attach(io: file_celine, filename: "nes.png", content_type: "image/png")
 
@@ -68,7 +70,7 @@ end
 customer_first_names = ["Anna", "Cécile", "Camila", "Aurora", "Nadia", "Charlotte", "Camille", "Jeanne", "Justine", "Wendy"]
 customer_last_names = ["Dupont", "Durand", "Dubois", "Petit", "Lambert", "Martin", "Fontaine", "Vasseur", "Dupuis", "Royer"]
 item_names = ["Bérénice", "Albertine", "Judith", "Juliette", "Sandra", "Isabella", "Charlotte", "Scarlett", "Naomi", "Natalie", "Kate", "Megan", "Emma", "Charlize", "Keira"]
-
+item_name = item_names.sample
 orders = (1..40).map do |i|
   customer_first_name = customer_first_names.sample
   customer_last_name = customer_last_names.sample
@@ -77,12 +79,11 @@ orders = (1..40).map do |i|
 end
 
 # Items:
-# colors = ["black", "red", "blue", "green", "yellow", "orange", "purple"]
 
 orders.each do |order|
-  rand(1..2).times do
+  rand(1..5).times do
     Item.create!(
-      name: item_names.sample,# + " " + colors.sample,
+      name: item_name,
       order: order,
       restock: false,
       produit: false,
@@ -92,7 +93,16 @@ orders.each do |order|
   end
 end
 
-
+# Returns:
+2.times do |i|
+  Return.create!(
+    status: 'completed',
+    comment: " ",
+    warehouse_operator_id: amaury.id,
+    client_service_officer_id: officers.sample.id,
+    order: orders.sample
+  )
+end
 
 # à garder à la fin
 order_1 = Order.create!(
