@@ -3,22 +3,27 @@
       <%= video_tag "video_homepage.mp4", autoplay: true, loop: true, controls: false, mute: true, class: "mx-auto d-block" %>
       <h1 class="title">Eleanor</h1>
       <div class="slogan" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-        <p>Your trusted logistics partner : Eleanor Returnsworth helps coordinate e-commerce client service officers with warehouse operators to monitor product returns efficiently.</p>
+        <p>Your trusted logistics partner: Eleanor Returnsworth helps coordinate e-commerce client service officers with warehouse operators to monitor product returns efficiently.</p>
       </div>
-    <div class="home row">
-        <% if user_signed_in? %>
-          <% if current_user.role == "warehouse_operator" %>
-            <a href="/logistics" type="button" class="btn-lg btn-block mx-auto py-8 bg-success p-6" style="width: fit-content;">Start Scanning</a>
-          <% else %>
-            <a href="/returns/new" type="button" class="btn-lg btn-block mx-auto py-8 bg-success p-6" style="width: fit-content;">Create a Return</a>
-          <% end %>
-        <% else %>
-          <div class="text-center">
-            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-sm", style: "font-size:18px; padding:10px 5px; width:150px; border-radius: 50px; margin-top:5px;" %>
-            <%= link_to "Sign In", new_user_session_path, class: "btn btn-warning btn-sm ml-2", style: "font-size:18px; padding:10px 5px; width:150px; border-radius: 50px; margin-top:5px;" %>
-          </div>
-        <% end %>
-    </div>
+  </div>
+
+  <div class="row">
+    <% if user_signed_in? %>
+      <% if current_user.role == "warehouse_operator" %>
+        <%= link_to "Start Scanning", "/logistics", class: "btn-lg btn-block mx-auto w-50 py-8 bg-success p-6", style: "text-decoration: none;" %>
+      <% else %>
+        <%= link_to "Create a Return", "/returns/new", class: "btn-lg btn-block mx-auto w-50 py-8 bg-success p-6", style: "text-decoration: none;" %>
+      <% end %>
+    <% else %>
+      <div class="text-center">
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success btn-sm", style: "font-size:30px; padding:25px 20px; width:150px; border-radius: 50px; margin-top:5px;" %>
+        <%= link_to "Sign In", new_user_session_path, class: "btn btn-warning btn-sm ml-2", style: "font-size:30px; padding:25px 20px; width:150px; border-radius: 50px; margin-top:5px;" %>
+      </div>
+    <% end %>
+  </div>
+
+ <div class="row justify-content-center mt-4">
+    <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link menu-button text-light", style: "background-color: lightgray; max-width: 300px; text-decoration: none;" %>
   </div>
 
   <script>

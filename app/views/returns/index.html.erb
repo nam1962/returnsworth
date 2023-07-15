@@ -10,8 +10,8 @@
     <div class="col-md-4 mb-4">
       <div class="card" style="border-radius: 15px; height: 100%;">
         <div class="card-body">
-          <h2 class="d-flex mt-2" class="card-title">Return N°: <%= return_record.id %></h2>
-          <p class="card-text">Order N°: <%= return_record.items.first.present? ? return_record.order.order_number : 'N/A' %></p>
+          <h2 class="d-flex mt-2 fs-4" class="card-title">Return N°: <%= return_record.id %></h2>
+          <p class="card-text">Order N°<%= return_record.items.first.present? ? return_record.order.order_number : 'N/A' %></p>
           <% unless return_record.status.nil? %>
             <p class="card-text">Status: <%= return_record.status %></p>
           <% end %>
