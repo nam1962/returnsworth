@@ -27,16 +27,32 @@
   width: 80px;
 }
 .navbar-width-80 {
-  width: 80%;
+  width: 90%; /* Adjusted width to create the empty space */
+  margin: 0 auto; /* Center the navbar */
+}
+
+.logo {
+  max-width: 100%; /* Ensure the logo image fits within the container */
 }
 
 .navbar-toggler {
   border: transparent!important;
 }
 .brand-font {
-  justify-content: right;
+  flex-grow: 1; /* Allow the text to occupy remaining space */
+  text-align: left; /* Center the text */
+  font-size: 60%;
 }
 
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 2px solid rgba(0, 0, 0, 0.2); /* Lightly outlined box effect */
+  padding: 5px 10px; /* Adjust padding as needed */
+  margin-left: 10px; /* Add spacing between the logo and the button */
+  font-size: 50%;
+}
 .avatar {
   display: inline-block;
 }

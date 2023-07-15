@@ -21,7 +21,7 @@
               <h2 class="d-flex justify-content-center mt-4" class="card-title">Return N°: <%= return_record.id %></h2>
               <h3 class="card-text">Order N°: <%= return_record.items.first.present? ? return_record.order.order_number : 'N/A' %></h3>
               <h3 class="card-text">Status: <%= return_record.status %></h3>
-              <h3 class="card-text">State: <%= return_record.state %></h3>
+              <h3 class="d-none card-text">State: <%= return_record.state %></h3>
                 <div class="d-flex justify-content-center">
                   <%= link_to 'Show', return_record, class: 'btn btn-warning btn-xs', style: "border-radius: 50px; margin-right: 100px; margin-left: 10px;" %>
 
