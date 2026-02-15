@@ -1,1 +1,7 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# returnsworth
+
+Ce dépôt est une archive. Le développement actif se fait sur Codeberg :
+
+https://codeberg.org/doLys/returnsworth
+
+Issues, contributions et code à jour sont sur Codeberg.
